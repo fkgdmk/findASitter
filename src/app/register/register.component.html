@@ -1,0 +1,63 @@
+<!-- <mat-radio-group>
+  <input type="radio" value='sitter' [(ngModel)]='registrant'>Babysitter
+  <input type="radio" value='baby'[(ngModel)]='registrant'>Baby<br/>
+</mat-radio-group> -->
+<div class="container">
+
+<mat-radio-group [(ngModel)]='registrant'>
+    <mat-radio-button class="example-radio-button" value='sitter' >Babysitter</mat-radio-button>
+    <mat-radio-button class="example-radio-button" id="radio" value='baby' >Baby</mat-radio-button>
+  </mat-radio-group>
+  
+  <form novalidate [formGroup]="registerForm" 
+  (submit)="onSubmit(registerForm)">
+
+  <div *ngIf="registrant == 'baby'">
+    <div class="example-form">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Firstname" id="firstname" formControlName="firstname">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Postal Code" id="postalCode" formControlName="postalCode">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Age" id="age" formControlName="age">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Gender" id="gender" formControlName="gender">
+      </mat-form-field>
+    </div>
+    
+    <button mat-raised-button color="primary" type="submit" id="createBaby">Register</button>
+  </div>
+
+  <div *ngIf="registrant == 'sitter'">
+    <div>
+      <label>Firstname</label>
+      <input type="text" formControlName="firstname">
+    </div>
+    <div>
+      <label>Lastname</label>
+      <input type="text" formControlName="lastname">
+    </div>
+    <div>
+      <label>Age</label>
+      <input type="text" formControlName="age">
+    </div>
+    <div>
+      <label>Gender</label>
+      <input type="text" formControlName="gender">
+    </div>
+    <div>
+      <label>Years of Experience</label>
+      <input type="text" formControlName="yearsOfExperience">
+    </div>
+    <div>
+      <label>Region</label>
+      <input type="text" formControlName="region">
+    </div>
+    <button mat-raised-button color="primary" type="submit" id="createSitter">Register</button>
+  </div>
+  </form>
+
+</div>

@@ -1,0 +1,43 @@
+.example-radio-group {
+    display: inline-flex;
+    flex-direction: column;
+  }
+  
+  .example-radio-button {
+    margin: 5px;
+  }
+  
+  .example-selected-value {
+    margin: 15px 0;
+  }
+
+  .inputDiv {
+    display: inline-flex;
+    flex-direction: column;
+  }
+
+.error {
+    color: red;
+  }
+  
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+.example-full-width {
+    width: 100%;
+  }
+
+.container{
+    width: 400px;
+    
+    position: absolute;
+    top: 10%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: auto;
+}

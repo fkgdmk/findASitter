@@ -1,0 +1,39 @@
+<!-- <p>Babies:</p>
+  <ul class="babies">
+    <li *ngFor="let baby of babies">
+      Firstname: {{ baby.firstname }}<br>
+      Postalcode: {{ baby.postalCode }}<br>
+      Age: {{ baby.age }}<br>
+      Gender: {{ baby.gender }}<br>
+      Picture: {{ baby.picture }}<br>
+      <button type="submit" class="deleteBtn" (click)="deleteItem(baby, babies)">Delete</button>
+      <button type="submit">Edit</button>      
+      <br><br>
+    </li>
+  </ul>
+<p>Babysitters:</p>
+<ul>
+  <li *ngFor="let sitter of sitters">
+    Firstname: {{ sitter.firstname }}<br>
+    Lastname: {{ sitter.lastname }}<br>
+    Age: {{ sitter.age }}<br>
+    Gender: {{ sitter.gender }}<br>
+    Picture: {{ sitter.picture }}<br>
+    <button type="submit" (click)="deleteItem(sitter, sitters)">Delete</button>
+    <button type="submit" (click)="editItem(sitter)">Edit</button>
+    <br><br>
+  </li>
+</ul> -->
+
+
+<div id="card-container">
+    <div *ngFor="let baby of babies">
+      <app-user
+      [babyInput]="baby"
+      (babyClicked)="onBabyClicked($event)">  
+    </app-user>
+  </div>
+</div>
+
+
+

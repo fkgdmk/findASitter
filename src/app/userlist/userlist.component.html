@@ -25,10 +25,12 @@
   </li>
 </ul> -->
 
+<mat-form-field >
+  <input matInput placeholder="Search" [(ngModel)]="search">
+</mat-form-field>
 
 <div id="card-container">
-  
-  <div *ngFor="let baby of babies">
+  <div *ngFor="let baby of babies | filterBabies: search">
       <app-user
       [babyInput]="baby"
       (babyClicked)="onBabyClicked($event)">  

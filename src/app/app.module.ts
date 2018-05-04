@@ -1,3 +1,4 @@
+import { FilterBabies } from './babies.filter';
 import { DataService } from './data.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -36,6 +37,7 @@ import { UserComponent } from './userlist/user/user.component';
     PageNotFoundComponent,
     UserlistComponent,
     UserComponent,
+    FilterBabies
   ],
   imports: [
     BrowserModule,

@@ -20,7 +20,8 @@ import {
   MatInputModule, 
   MatToolbarModule,
   MatRadioModule,
-  MatCardModule
+  MatCardModule,
+  MatIconModule,
 } from '@angular/material';
 import { UserComponent } from './userlist/user/user.component';
 
@@ -51,7 +52,8 @@ import { UserComponent } from './userlist/user/user.component';
       MatInputModule,
       MatToolbarModule,
       MatRadioModule,
-      MatCardModule
+      MatCardModule,
+      MatIconModule
     ], 
   
   ],

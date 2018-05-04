@@ -2,28 +2,33 @@
   (submit)="onSubmitLogin(loginForm)">
   
   <div class="container">
-    <form class="example-form" [formGroup]="loginForm">
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="Username" value="" formControlName="username">
-      </mat-form-field>
-        <!-- <div class="error" *ngIf="loginForm.controls.username.errors?.required && loginForm.controls.username.touched">
-          Please fill out the username
-        </div> -->
-    </form>
-    
-    <form class="example-form" [formGroup]="loginForm">
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="Password" type="password" formControlName="password">
-      </mat-form-field>
-    </form>
-      <!-- <div class="error" *ngIf="loginForm.controls.password.errors?.required && loginForm.controls.password.touched">
-        Please fill out the password
-      </div> -->
-    
-    <div>
-      <button type="submit" class="loginBtn"mat-raised-button color="primary">Login</button>
+    <div class="inputFieldsDiv">
+      <h3>Login</h3>
+      <hr><br>
+      <form class="example-form" [formGroup]="loginForm">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Username" value="" formControlName="username">
+        </mat-form-field>
+          <div class="error" *ngIf="loginForm.controls.username.errors?.required && loginForm.controls.username.touched">
+            Please fill out the username
+          </div>
+      </form>
+      <br>
+      
+      <form class="example-form" [formGroup]="loginForm">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Password" type="password" formControlName="password">
+        </mat-form-field>
+      </form>
+        <div class="error" *ngIf="loginForm.controls.password.errors?.required && loginForm.controls.password.touched">
+          Please fill out the password
+        </div>
+        <div class="checkboxDiv">
+          <mat-checkbox>Remember me</mat-checkbox>
+        </div>
+        <br>
+        <button type="submit" class="loginBtn" mat-raised-button color="primary">Login</button>   
     </div>
-    
   </div>
   <!-- <p>Form value: {{ loginForm.value | json }}</p>
   <p>Is form valid: {{ loginForm.valid | json }}</p>  -->

@@ -1,5 +1,7 @@
 .error {
   color: red;
+  font-size: 12px;
+  text-align: left;
 }
 
 .example-form {
@@ -13,10 +15,16 @@
 }
 
 .loginBtn {
-  position: absolute;
-  margin-left: 40%;
-  margin-top: 10%;  
+  margin-top: 9%;
 }
+
+hr {
+  color: #3F51B5;
+  height: 1px;   
+  background-color: #3F51B5;
+  border: none;
+}
+
 
 .container{
   width: 400px;
@@ -28,4 +36,17 @@
   right: 0;
 
   margin: auto;
+}
+
+.checkboxDiv {
+  margin: 4%;
+}
+
+.inputFieldsDiv {
+  font-family: Roboto;
+  color: #283593;
+  background: white;
+  text-align: center;
+  padding: 20px;
+  box-shadow: 0 0 10px 4px rgba(0,0,0,.15);
 }

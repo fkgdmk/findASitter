@@ -1,3 +1,5 @@
+@import "~variables.scss";
+
 .error {
   color: red;
   font-size: 12px;
@@ -48,5 +50,5 @@ hr {
   background: white;
   text-align: center;
   padding: 20px;
-  box-shadow: 0 0 10px 4px rgba(0,0,0,.15);
+  box-shadow: $box-shadow;
 }

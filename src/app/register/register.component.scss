@@ -1,5 +1,4 @@
-$primary-color: #3F51B5;
-
+@import "~variables.scss";
 
 .example-radio-group {
     display: inline-flex;
@@ -9,13 +8,11 @@ $primary-color: #3F51B5;
   .example-radio-button {
     margin: 5px;
   }
-  
 
   .inputDiv {
     display: inline-flex;
     flex-direction: column;
   }
-
   
 .example-form {
     min-width: 150px;
@@ -56,9 +53,19 @@ hr {
 
 .inputFieldsDiv{
   font-family: Roboto;
-  color: #283593;
+  color: $primary-color;
   background: white;
   text-align: center;
   padding: 20px;
-  box-shadow: 0 0 10px 4px rgba(0,0,0,.15);
+  box-shadow: $box-shadow;
+}
+
+.created-succesfully {
+  color: #00ff00;
+}
+
+.spinner {
+  margin-left: 46%;
+  margin-bottom: 7%;
+  margin-top: 5%;
 }

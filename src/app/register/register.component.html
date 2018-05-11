@@ -4,67 +4,74 @@
 </mat-radio-group> -->
 <div class="container">
 
-<mat-radio-group [(ngModel)]='registrant'>
-  <div class="radioBtns">
-    <mat-radio-button class="example-radio-button" value='sitter' >Babysitter</mat-radio-button>
-    <mat-radio-button class="example-radio-button" id="radio" value='baby' >Baby</mat-radio-button>
-  </div>
-</mat-radio-group>
-  
-  <form novalidate [formGroup]="registerForm" 
-  (submit)="onSubmit(registerForm)">
-
-  <div class="inputFieldsDiv" *ngIf="registrant == 'baby'">
-    <h3>Register Baby</h3>
-    <hr><br>
-    <div class="example-form">
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="Firstname" id="firstname" formControlName="firstname" required>
-      </mat-form-field>
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="Age" id="age" formControlName="age" required>
-      </mat-form-field>
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="Postal Code" id="postalCode" formControlName="postalCode" required>
-      </mat-form-field>
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="Gender" id="gender" formControlName="gender" required>
-      </mat-form-field>
+  <mat-radio-group [(ngModel)]='registrant'>
+    <div class="radioBtns">
+      <mat-radio-button class="example-radio-button" value='sitter'>Babysitter</mat-radio-button>
+      <mat-radio-button class="example-radio-button" id="radio" value='baby'>Baby</mat-radio-button>
     </div>
-    <button mat-raised-button color="primary" type="submit" id="createBaby">Register</button>
-  </div>
+  </mat-radio-group>
 
-  <div class="inputFieldsDiv" *ngIf="registrant == 'sitter'">
-      <h3>Register Babysitter</h3>
-      <hr><br>
+  <form novalidate [formGroup]="registerBabyForm" (submit)="onSubmit(registerBabyForm)">
+
+    <div class="inputFieldsDiv" *ngIf="registrant == 'baby'">
+      <h3>Register Baby</h3>
+      <hr>
+      <br>
       <div class="example-form">
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Firstname" id="firstname" formControlName="firstname" required>
-          </mat-form-field>
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Lastname" id="lastname" formControlName="lastname" required>
-          </mat-form-field>
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Age" id="age" formControlName="age" required>
-          </mat-form-field>
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Gender" id="gender" formControlName="gender" required>
-          </mat-form-field>
-          <mat-form-field class="example-full-width">
-              <input matInput placeholder="Region" id="region" formControlName="region" required>
-          </mat-form-field>
-          <mat-form-field class="example-full-width">
-              <input matInput placeholder="Picture" id="picture" formControlName="picture" required>
-          </mat-form-field>
-          <mat-form-field class="example-full-width">
-              <input matInput placeholder="Years of experience" id="yearsOfExperience" formControlName="yearsOfExperience" required>
-          </mat-form-field>
-          <mat-form-field class="example-full-width">
-              <input matInput placeholder="Phone" id="phone" formControlName="phone" required>
-          </mat-form-field>
-        </div>
-    <button mat-raised-button color="primary" type="submit" id="createSitter">Register</button>
-  </div>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Firstname" id="firstname" formControlName="firstname" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Age" id="age" formControlName="age" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Postal Code" id="postalCode" formControlName="postalCode" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Gender" id="gender" formControlName="gender" required>
+        </mat-form-field>
+      </div>
+      <mat-spinner class="spinner" diameter="30" *ngIf="spinner == true"></mat-spinner>
+      <p class="created-succesfully" *ngIf="userCreated == true">Baby was created</p>
+      <button mat-raised-button color="primary" type="submit" id="createBaby">Register</button>
+    </div>
   </form>
 
+
+  <form novalidate [formGroup]="registerSitterForm" (submit)="onSubmit(registerSitterForm)">
+
+    <div class="inputFieldsDiv" *ngIf="registrant == 'sitter'">
+      <h3>Register Babysitter</h3>
+      <hr>
+      <br>
+      <div class="example-form">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Firstname" id="firstname" formControlName="firstname" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Lastname" id="lastname" formControlName="lastname" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Age" id="age" formControlName="age" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Gender" id="gender" formControlName="gender" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Region" id="region" formControlName="region" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Picture" id="picture" formControlName="picture" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Years of experience" id="yearsOfExperience" formControlName="yearsOfExperience" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Phone" id="phone" formControlName="phone" required>
+        </mat-form-field>
+      </div>
+      <p class="created-succesfully" *ngIf="userCreated == true">Babysitter was created</p>
+      <button mat-raised-button color="primary" type="submit" id="createSitter">Register</button>
+    </div>
+  </form>
 </div>

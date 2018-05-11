@@ -25,14 +25,33 @@
   </li>
 </ul> -->
 
+<div class="spinner-div">
+  <mat-spinner diameter="150" *ngIf="spinner == true"></mat-spinner>
+</div>
 
 <div id="card-container">
   
   <div *ngFor="let baby of babies">
-      <app-user
-      [babyInput]="baby"
-      (babyClicked)="onBabyClicked($event)">  
-    </app-user>
+      <mat-card>
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{baby.firstname}}</mat-card-title>
+            <mat-card-subtitle>{{baby.age}} months</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image src="https://www.femina.dk/sites/femina.dk/files/media/article/tigerspring_baby.jpg" alt="Photo of a Shiba Inu">
+          <mat-card-content>
+            <p>
+              The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+              A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+              bred for hunting.
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button>Apply</button>
+            <button mat-button>More Info</button>
+            <button mat-button (click)="deleteBaby(baby)">Delete</button>
+          </mat-card-actions>
+        </mat-card>
   </div>
 </div>
 

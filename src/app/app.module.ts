@@ -1,3 +1,4 @@
+import { UsersService } from './users.service';
 import { DataService } from './data.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -13,6 +14,7 @@ import { AuthService } from './auth.service';
 import { UserlistComponent } from './userlist/userlist.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FormsModule} from '@angular/forms';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import {
   MatButtonModule, 
   MatCheckboxModule, 
@@ -24,8 +26,7 @@ import {
   MatIconModule,
 } from '@angular/material';
 import { UserComponent } from './userlist/user/user.component';
-
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -38,10 +39,12 @@ import { UserComponent } from './userlist/user/user.component';
     UserComponent,
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
     FormsModule,
+    MatProgressSpinnerModule,    
     [
       BrowserAnimationsModule
     ],
@@ -57,7 +60,7 @@ import { UserComponent } from './userlist/user/user.component';
     ], 
   
   ],
-  providers: [AuthGuard, AuthService, DataService],
+  providers: [AuthGuard, AuthService, DataService, UsersService, HttpClientModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

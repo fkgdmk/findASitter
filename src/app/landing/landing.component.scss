@@ -1,0 +1,15 @@
+.Infobox{
+
+    min-height: 550px;
+    height: 80vh;
+
+    .Infotext{
+    margin: 0;
+      width: 70%;
+      font-size: calc(2vw + 18px);
+      color: white;
+      font-weight: 700;
+      text-shadow: 1px 1px 40px rgba(22, 23, 31, 0.4);
+        
+    }  
+}

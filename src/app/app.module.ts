@@ -25,6 +25,7 @@ import {
   MatIconModule,
 } from '@angular/material';
 import { UserComponent } from './userlist/user/user.component';
+import { LandingComponent } from './landing/landing.component';
 
 
 
@@ -37,7 +38,8 @@ import { UserComponent } from './userlist/user/user.component';
     PageNotFoundComponent,
     UserlistComponent,
     UserComponent,
-    FilterBabies
+    FilterBabies,
+    LandingComponent
   ],
   imports: [
     BrowserModule,

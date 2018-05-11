@@ -6,10 +6,12 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './auth-guard';
 import { UserlistComponent } from './userlist/userlist.component';
+import { LandingComponent } from './landing/landing.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
   { path: 'contact', component: ContactComponent},
+  { path: 'landing', component: LandingComponent},
   // children: [
   //   // { path: 'baby-list', component: BabyListComponent},
   //   // { path: 'sitter-list', component: SitterListComponent},

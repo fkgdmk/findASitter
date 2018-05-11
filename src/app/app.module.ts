@@ -1,4 +1,5 @@
 import { UsersService } from './users.service';
+import { FilterBabies } from './babies.filter';
 import { DataService } from './data.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -27,6 +28,9 @@ import {
 } from '@angular/material';
 import { UserComponent } from './userlist/user/user.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { LandingComponent } from './landing/landing.component';
+
+
 
 @NgModule({
   declarations: [
@@ -37,6 +41,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     PageNotFoundComponent,
     UserlistComponent,
     UserComponent,
+    FilterBabies,
+    LandingComponent
   ],
   imports: [
     HttpClientModule,

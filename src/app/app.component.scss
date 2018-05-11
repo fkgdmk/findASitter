@@ -13,7 +13,7 @@ a{
     font-size: 16px;
     font-weight: 550;
     padding: 40px;
-    color: whitesmoke;
+    color: black;
     text-decoration: none;
 }
 
@@ -25,13 +25,22 @@ a:hover{
     flex: auto;
     text-align: center;
     padding: 8px 16px;
+   background-color: #ffff;
+   opacity: 0.5;
 }   
 
-.mat-toolbar-row, .mat-toolbar-single-row {
-    margin-top: -8px;
-    height: 82px;
-    width: 100%;
-    -webkit-box-shadow: 0 10px 6px -6px #999;
-    -moz-box-shadow: 0 10px 6px -6px #999;
-     box-shadow: 0 10px 6px -6px #999;
+.mat-toolbar.mat-primary {
+    background: #ffff;
+    opacity: 0.5;
+    color: #fff;
 }
+
+
+.mat-toolbar-row, .mat-toolbar-single-row {
+    // -webkit-box-shadow: 0 10px 6px -6px #999;
+    // -moz-box-shadow: 0 10px 6px -6px #999;
+    //  box-shadow: 0 10px 6px -6px #999;
+}
+
+
+

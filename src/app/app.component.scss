@@ -25,14 +25,22 @@ a:hover{
     flex: auto;
     text-align: center;
     padding: 8px 16px;
-   background-color: #ffff;
-   opacity: 0.5;
-}   
+    position: relative;
+}
 
 .mat-toolbar.mat-primary {
-    background: #ffff;
-    opacity: 0.5;
-    color: #fff;
+    position: relative;
+    background: transparent;
+    &:before {
+        content: "";
+        background-color: #ffff;
+        opacity: 0.5;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
 }
 
 

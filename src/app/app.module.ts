@@ -68,7 +68,7 @@ import { UserregisterComponent } from './userregister/userregister.component';
     ], 
   
   ],
-  providers: [AuthGuard, AuthService, DataService, UsersService, HttpClientModule],
+  providers: [AuthGuard, AuthService, DataService, UsersService, HttpClientModule, UserlistComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

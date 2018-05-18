@@ -8,6 +8,7 @@ import { AuthGuard } from './auth-guard';
 import { UserlistComponent } from './userlist/userlist.component';
 import { LandingComponent } from './landing/landing.component';
 import { UserregisterComponent } from './userregister/userregister.component';
+import { UserComponent } from './userlist/user/user.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'userregister', component: UserregisterComponent },
   { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
   { path: 'userlist', component: UserlistComponent },
+  { path: 'user', component: UserComponent},
   { path: '**', component: PageNotFoundComponent },
 ];
 

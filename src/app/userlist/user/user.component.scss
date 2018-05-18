@@ -1,14 +1,71 @@
-.example-header-image {
-    background-image: url('https://earthboundcentral.com/wp-content/uploads/2009/07/baby-100x100.jpg');
-    background-size: cover;
+@import "~variables.scss";
+
+.example-radio-group {
+    display: inline-flex;
+    flex-direction: column;
+  }
+  
+  .example-radio-button {
+    margin: 5px;
   }
 
-mat-card {
-    max-width: 300px;
-    margin: 6px;
+  .inputDiv {
+    display: inline-flex;
+    flex-direction: column;
+  }
+  
+.example-form {
+    min-width: 150px;
+    max-width: 550px;
+    width: 100%;
+  }
+  
+.example-full-width {
+    width: 100%;
+  }
+
+.radioBtns {
+  position: relative;
+  margin-left: 29%;
+  margin-top: 0%;
+  margin-bottom: 5%;
+  height: 50px;
 }
 
-#card-container{
-    display: flex;
-    flex-flow: row wrap;
+.container{
+    width: 400px;
+    
+    position: absolute;
+    top: 10%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: auto;
+}
+
+hr {
+  color: $primary-color;
+  height: 1px;   
+  background-color: $primary-color;
+  border: none;
+}
+
+.inputFieldsDiv{
+  font-family: Roboto;
+  color: $primary-color;
+  background: white;
+  text-align: center;
+  padding: 20px;
+  box-shadow: $box-shadow;
+}
+
+.created-succesfully {
+  color: #00ff00;
+}
+
+.spinner {
+  margin-left: 46%;
+  margin-bottom: 7%;
+  margin-top: 5%;
 }

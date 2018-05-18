@@ -7,4 +7,5 @@ export class Baby {
   public picture: String;
   public age: number; // months
   public gender: String;
+  public userId?: string;
 }

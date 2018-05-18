@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from './../auth.service';
 import { UsersService } from '../users.service';
+import { User } from '../entities/user';
 
 @Component({
   selector: 'app-register',
@@ -53,12 +54,24 @@ export class RegisterComponent implements OnInit {
     if (this.registerBabyForm.valid) {
       this.spinner = true;
       let baby: Baby = this.registerBabyForm.value;
+      let foundBabies: Baby[];
       
       this.usersService.createBaby(baby).subscribe( x=> {
         this.userCreated = true;
         this.spinner = false;
+
+        console.log(this.usersService.loggedInUser.email);           
         this.clearForm();
+
+        this.usersService.updateUser(this.usersService.loggedInUser, "123baby");
+
+        this.usersService.getUsers().subscribe( (result : any[]) => {
+          foundBabies = result.filter(aBaby => aBaby.firstname === baby.firstname); 
+          console.log(foundBabies);
+          this.usersService.updateBabyUser(foundBabies[0]);
+        });
       });
+
     } else {
       alert("Fill out all fields")
     }

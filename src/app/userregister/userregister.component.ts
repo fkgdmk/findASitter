@@ -24,30 +24,23 @@ export class UserregisterComponent implements OnInit {
     // Try to login
     if (registerForm.valid) {
       // Send an http requestu
+      console.log("Valid form");
       let user: User = this.registerForm.value;
-        
-      this.usersService.createUser(user);
-      } else {
-        alert("Fill out all fields")
-      }
 
-      console.log("valid");
-      this.authService.login().subscribe(() => {
-        console.log("Now I am logged in!");
-      })
-      console.log("Before or after?");
-
-
-      // this.router.navigate(['contact']); // Navigate
+      this.usersService.createUser(user).subscribe( x=> {
+        console.log(user);
+        console.log("Created user!");
+        this.router.navigate(["/login"]);
+      });
     } else {
-      // Show errors and not send a request.
-      alert("Fill out the fields, dummy! ")
+      alert("Fill out all fields")
     }
+      // this.router.navigate(['contact']); // Navigate
   }
 
   createForm() {
     this.registerForm = this.fb.group({
-      username: ['', Validators.required],
+      email: ['', Validators.required],
       password: ['', Validators.required], 
     });
   }

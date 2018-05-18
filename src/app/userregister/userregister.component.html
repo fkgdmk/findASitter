@@ -3,14 +3,14 @@
   
   <div class="container">
     <div class="inputFieldsDiv">
-      <h3>Login</h3>
+      <h3>Register</h3>
       <hr><br>
       <form class="example-form" [formGroup]="registerForm">
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Username" value="" formControlName="username">
+          <input matInput placeholder="Email" value="" formControlName="email">
         </mat-form-field>
-          <div class="error" *ngIf="registerForm.controls.username.errors?.required && registerForm.controls.username.touched">
-            Please fill out the username
+          <div class="error" *ngIf="registerForm.controls.email.errors?.required && registerForm.controls.email.touched">
+            Please fill out the email
           </div>
       </form>
       <br>

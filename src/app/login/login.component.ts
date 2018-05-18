@@ -20,24 +20,22 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmitLogin(loginForm) {
-    // console.log(loginForm);
+    console.log("Login form:");
+    console.log(loginForm);
+
     // Send a request to the server
     // Try to login
     if (loginForm.valid) {
       // Send an http requestu
       console.log("valid");
-      console.log(this.users[0].email);
 
       for (let i = 0; i < this.users.length; i++) {
         let element: User = this.users[i];
-        console.log(this.users[i].email);
-        console.log(this.users[i].password);
-        console.log(loginForm.email);
-        console.log(loginForm.password);
-        if (element.email == loginForm.email) {
-          if (element.password === loginForm.password) {
+        if (element.email == loginForm.value.username) {
+          if (element.password === loginForm.value.password) {
             this.authService.login().subscribe(() => {
               console.log("Now I am logged in!");
+              this.usersService.loggedInUser = element;
             })
           }
         }

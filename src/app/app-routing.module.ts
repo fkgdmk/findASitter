@@ -18,7 +18,7 @@ const routes: Routes = [
   ] },
   { path: 'login', component: LoginComponent },
   { path: 'userregister', component: UserregisterComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
   { path: 'userlist', component: UserlistComponent },
   { path: 'user', component: UserComponent},
   { path: '**', component: PageNotFoundComponent },

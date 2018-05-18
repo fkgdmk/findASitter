@@ -29,6 +29,7 @@ import {
 import { UserComponent } from './userlist/user/user.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { LandingComponent } from './landing/landing.component';
+import { UserregisterComponent } from './userregister/userregister.component';
 
 
 
@@ -42,7 +43,8 @@ import { LandingComponent } from './landing/landing.component';
     UserlistComponent,
     UserComponent,
     FilterBabies,
-    LandingComponent
+    LandingComponent,
+    UserregisterComponent
   ],
   imports: [
     HttpClientModule,

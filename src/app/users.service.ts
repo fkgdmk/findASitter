@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http"
 import { Baby } from "./entities/baby";
 import { Sitter } from "./entities/sitter";
+import { User } from "./entities/user";
 
 @Injectable()
 export class UsersService  {
@@ -10,6 +11,10 @@ export class UsersService  {
     createBaby(baby: Baby) {
         baby.customerId = '4';
         return this.http.post("http://angular2api2.azurewebsites.net/api/internships", baby);
+    }
+
+    createUser(user: User) {
+        return this.http.post("http://angular2api2.azurewebsites.net/api/internships", user)
     }
 
     deleteBaby(baby: Baby) {

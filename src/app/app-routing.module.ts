@@ -7,15 +7,17 @@ import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './auth-guard';
 import { UserlistComponent } from './userlist/userlist.component';
 import { LandingComponent } from './landing/landing.component';
+import { UserregisterComponent } from './userregister/userregister.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
-  { path: 'landing', component: LandingComponent,
+  { path: 'landing', component: LandingComponent, canActivate: [AuthGuard],
   children: [
     { path: 'contact', component: ContactComponent},
   ] },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'userregister', component: UserregisterComponent },
+  { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
   { path: 'userlist', component: UserlistComponent },
   { path: '**', component: PageNotFoundComponent },
 ];

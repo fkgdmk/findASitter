@@ -1,0 +1,36 @@
+<form [formGroup]="registerForm" novalidate 
+  (submit)="onSubmitRegister(registerForm)">
+  
+  <div class="container">
+    <div class="inputFieldsDiv">
+      <h3>Login</h3>
+      <hr><br>
+      <form class="example-form" [formGroup]="registerForm">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Username" value="" formControlName="username">
+        </mat-form-field>
+          <div class="error" *ngIf="registerForm.controls.username.errors?.required && registerForm.controls.username.touched">
+            Please fill out the username
+          </div>
+      </form>
+      <br>
+      
+      <form class="example-form" [formGroup]="registerForm">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Password" type="password" formControlName="password">
+        </mat-form-field>
+      </form>
+        <div class="error" *ngIf="registerForm.controls.password.errors?.required && registerForm.controls.password.touched">
+          Please fill out the password
+        </div>
+        <div class="checkboxDiv">
+          <mat-checkbox>Remember me</mat-checkbox>
+        </div>
+        <br>
+        <button type="submit" class="loginBtn" mat-raised-button color="primary">Register</button>   
+    </div>
+  </div>
+  <!-- <p>Form value: {{ loginForm.value | json }}</p>
+  <p>Is form valid: {{ loginForm.valid | json }}</p>  -->
+    <!-- [disabled]="loginForm.invalid" -->
+</form>

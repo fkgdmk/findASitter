@@ -9,6 +9,29 @@
       <br><br>
     </li>
   </ul> -->
-
-
-
+<div class="container">
+  <form novalidate [formGroup]="editBabyForm" (submit)="onSubmit(editBabyForm)">
+    <div class="inputFieldsDiv">
+      <h3>Register Baby</h3>
+      <hr>
+      <br>
+      <div class="example-form">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Firstname" id="firstname" formControlName="firstname" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Age" id="age" formControlName="age" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Postal Code" id="postalCode" formControlName="postalCode" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Gender" id="gender" formControlName="gender" required>
+        </mat-form-field>
+      </div>
+      <mat-spinner class="spinner" diameter="30" *ngIf="spinner == true"></mat-spinner>
+      <p class="created-succesfully" *ngIf="userCreated == true">Baby was created</p>
+      <button mat-raised-button color="primary" type="submit" id="createBaby">Register</button>
+    </div>
+  </form>
+</div>

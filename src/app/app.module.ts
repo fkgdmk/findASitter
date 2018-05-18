@@ -66,7 +66,7 @@ import { LandingComponent } from './landing/landing.component';
     ], 
   
   ],
-  providers: [AuthGuard, AuthService, DataService, UsersService, HttpClientModule],
+  providers: [AuthGuard, AuthService, DataService, UsersService, HttpClientModule, UserlistComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

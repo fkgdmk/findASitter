@@ -66,17 +66,7 @@ export class RegisterComponent implements OnInit {
     if (this.registrant === 'sitter') {
 
     }
-      
-    // console.log(this.registrant);
-    // if (this.registrant === 'baby') {
-    //   const baby: Baby = registerForm.value;
-    //   this.data.addBaby(baby);
-    //   console.log(baby);
-    // } else {
-    //  const sitter: Sitter = registerForm.value;
-    //   this.data.addSitter(sitter);
-    // }
-
+    
     //this.router.navigate(['userlist']);
   }
 

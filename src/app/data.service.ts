@@ -8,7 +8,7 @@ export class DataService {
   
   baby : Baby;
   private babySource = new BehaviorSubject<Baby>(this.baby);
-  currentBaby = this.babySource .asObservable();
+  currentBaby = this.babySource.asObservable();
 
   constructor() { }
 

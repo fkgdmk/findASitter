@@ -50,7 +50,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.registerBabyForm.valid) {
+    if (this.registerBabyForm.valid && this.registrant === 'baby') {
       this.spinner = true;
       let baby: Baby = this.registerBabyForm.value;
       
@@ -59,12 +59,16 @@ export class RegisterComponent implements OnInit {
         this.spinner = false;
         this.clearForm();
       });
+    } else if (this.registerSitterForm.valid && this.registrant === 'sitter') {
+      let sitter : Sitter = this.registerSitterForm.value;
+      console.log(sitter);
+
+      this.usersService.createSitter(sitter).subscribe( x=> {
+        console.log("test");
+        this.clearForm();
+      });
     } else {
-      alert("Fill out all fields")
-    }
-
-    if (this.registrant === 'sitter') {
-
+      alert("Fill out all fields");
     }
     
     //this.router.navigate(['userlist']);

@@ -34,7 +34,6 @@
 </mat-form-field>
 
 <div id="card-container">
-
   <div *ngFor="let baby of babies | filterBabies: search">
     <mat-card>
       <mat-card-header>
@@ -53,6 +52,26 @@
         <button mat-button>Apply</button>
         <button mat-button (click)="editBaby(baby)">Edit</button>
         <button mat-button (click)="deleteBaby(baby)">Delete</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div *ngFor="let sitter of sitters">
+    <mat-card>
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{sitter.firstname}}</mat-card-title>
+        <mat-card-subtitle>{{sitter.age}} years</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="https://www.femina.dk/sites/femina.dk/files/media/article/tigerspring_baby.jpg" alt="Photo of a Shiba Inu">
+      <mat-card-content>
+        <p>
+          This is a sitter
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>Apply</button>
+        <button mat-button>Edit</button>
+        <button mat-button (click)="deleteSitter(sitter)">Delete</button>
       </mat-card-actions>
     </mat-card>
   </div>

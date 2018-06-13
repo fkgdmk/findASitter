@@ -9,3 +9,16 @@ export class Sitter {
   public gender: String;
   public phone: String;
 }
+
+export interface ISitter {
+  id: number;
+  firstname: String;
+  lastname: String;
+  age: number;
+  yearsOfExperience: number;
+  region: String;
+  picture: String;
+  gender: String;
+  phone: String;
+}
+

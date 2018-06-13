@@ -58,10 +58,8 @@ export class UsersService  {
     }
 
     deleteBaby(baby: Baby) {
-        
         const id : string = baby._id;
         const url = "http://angular2api2.azurewebsites.net/api/internships/" + id;
-        console.log(url);
         return this.http.delete(url);
     }
 

@@ -4,6 +4,10 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { Router } from '@angular/router';
 import { UsersService } from '../users.service';
 import { User } from '../entities/user';
+import { NgRedux } from '@angular-redux/store';
+import { IAppState, INITIAL_STATE } from '../store';
+import { FETCH_DATA } from '../actions';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +20,8 @@ export class LoginComponent implements OnInit {
 
   // DI - Dependency Injection
   constructor(private fb: FormBuilder, private router: Router,
-    private authService: AuthService, private usersService: UsersService) {
+    private authService: AuthService, private usersService: UsersService,
+    private ngRedux: NgRedux<IAppState>, private http: HttpClient) {
   }
 
   onSubmitLogin(loginForm) {
@@ -61,12 +66,18 @@ export class LoginComponent implements OnInit {
     this.usersService.getUsers().subscribe( (result : any[]) => {
       this.users = result.filter(user => user.customerId === '123user'); 
       console.log(this.users);
+      console.log("Hello!")
     });
+  }
+
+  fetchUsers() {
+    this.ngRedux.dispatch({type: FETCH_DATA, http: this.http})
   }
 
   ngOnInit() {
     this.createForm();
-    this.getUsers();
+    //this.getUsers();
+    this.fetchUsers();
   }
 
 }

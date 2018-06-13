@@ -35,7 +35,7 @@
 
 <div id="card-container">
 
-  <div *ngFor="let baby of babies | filterBabies: search">
+  <div *ngFor="let baby of babies | filterBabies: search | async">
     <mat-card>
       <mat-card-header>
         <div mat-card-avatar class="avatar-image"></div>

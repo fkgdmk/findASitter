@@ -5,7 +5,7 @@ import { Baby } from '../entities/baby';
 import { Sitter } from '../entities/sitter';
 import { Router } from '@angular/router';
 import { INITIAL_STATE, IAppState } from '../store';
-import { NgRedux } from '@angular-redux/store';
+import { NgRedux, select } from '@angular-redux/store';
 import { REMOVE_BABY } from '../actions';
 
 @Component({
@@ -17,7 +17,10 @@ import { REMOVE_BABY } from '../actions';
 @Injectable()
 export class UserlistComponent implements OnInit {
 
-  private babies: Baby[];
+  //Redux
+  @select('babies') babies;
+
+  //Old
   private sitters: Sitter[];
   private spinner: boolean;
   private showCards: boolean;
@@ -35,7 +38,7 @@ export class UserlistComponent implements OnInit {
 
     // Somehow wait for dispatch fetching data from web API to finish?
     console.log(this.ngRedux.getState())
-    this.babies = this.ngRedux.getState().babies;
+    //this.babies = this.ngRedux.getState().babies;
     this.sitters = this.ngRedux.getState().sitters;
 
     this.spinner = false;

@@ -1,7 +1,7 @@
 import { UsersService } from '.././users.service';
 import { Component, OnInit, Injectable, Input, Output, EventEmitter } from '@angular/core';
 import { DataService } from '../data.service';
-import { Baby } from '../entities/baby';
+import { Baby, IBaby } from '../entities/baby';
 import { Sitter } from '../entities/sitter';
 import { Router } from '@angular/router';
 import { INITIAL_STATE, IAppState } from '../store';
@@ -18,7 +18,7 @@ import { REMOVE_BABY } from '../actions';
 export class UserlistComponent implements OnInit {
 
   //Redux
-  @select('babies') babies;
+  @select('babies') babies: IBaby[];
 
   //Old
   private sitters: Sitter[];
@@ -42,6 +42,8 @@ export class UserlistComponent implements OnInit {
     this.sitters = this.ngRedux.getState().sitters;
 
     this.spinner = false;
+    console.log("After spinner")
+    console.log(this.babies)
   }
 
   onBabyClicked(baby){
@@ -50,13 +52,25 @@ export class UserlistComponent implements OnInit {
 
   deleteBaby(baby: Baby) {    
     //Redux
-    this.ngRedux.dispatch({type: REMOVE_BABY, id: baby._id})
+    //this.ngRedux.dispatch({type: REMOVE_BABY, id: baby._id})
+    this.usersService.deleteBaby(baby).subscribe( () => {
+      this.babies = this.babies.filter((b) => {
+        if (b._id != null) {
+          b._id !== baby._id
+        } else {
+          console.log("b_id is null.")
+        }
+      })
+      location.reload();
+    });
 
+    this.ngRedux.dispatch({type: REMOVE_BABY, id: baby._id})
+    /*
     //Old
     this.usersService.deleteBaby(baby).subscribe( x => {
       this.babies = this.babies.filter((b) => b._id !== baby._id)
       location.reload();
-    });
+    });*/
   }
 
   editBaby(baby: Baby) {

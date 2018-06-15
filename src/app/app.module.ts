@@ -89,15 +89,11 @@ export class AppModule {
   constructor(ngRedux: NgRedux<IAppState>, http: HttpClient, database: DatabaseService) {
     ngRedux.configureStore(rootReducer, INITIAL_STATE);
     ngRedux.subscribe(() => {
-      console.log("New state: ");
-      console.log(ngRedux.getState());
+      console.log("> State changed <");
     })
 
     database.fetchBabies();
+    database.fetchUsers();
     database.testDispatches();
-    /*
-    setInterval(() => {
-      database.testDelete()
-    }, 5000)*/
   }
  }

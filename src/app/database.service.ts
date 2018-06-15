@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { IAppState } from "./store";
-import { ADD_BABIES, REMOVE_BABY, ADD_BABY } from "./actions";
+import { ADD_BABIES, REMOVE_BABY, ADD_BABY, ADD_USERS } from "./actions";
 import { NgRedux } from "@angular-redux/store";
 
 @Injectable()
@@ -17,9 +17,19 @@ export class DatabaseService {
           });;
       }
 
+    fetchUsers() {
+        this.http.get("http://angular2api1.azurewebsites.net/api/internships/getall").subscribe( (result : any[]) => {
+            let users = result.filter(user => user.customerId === '123user');
+            console.log("Got users: ");
+            console.log(users);
+            this.ngRedux.dispatch({type: ADD_USERS, users: users})
+          });;
+    }
+
     testDispatches() {
         console.log("Testing dispatches: ")
         this.ngRedux.dispatch({type: ADD_BABY, baby: {
+            _id: 9,
             customerId: 4,
             firstname: "Jakob",
             postalCode: 2860,
@@ -29,6 +39,7 @@ export class DatabaseService {
         }})
         
         this.ngRedux.dispatch({type: ADD_BABY, baby: {
+            _id: 8,
             customerId: 4,
             firstname: "Jakobi",
             postalCode: 2860,
@@ -36,10 +47,6 @@ export class DatabaseService {
             age: 14, // months
             gender: "Male"
         }})
-    }
-    
-    testDelete() {
-        this.ngRedux.dispatch({type: REMOVE_BABY, id: "5afecfc15cb6ed742ba36e71"})
     }
 }
 

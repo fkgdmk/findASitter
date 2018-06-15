@@ -58,6 +58,9 @@ export class UsersService  {
     }
 
     deleteBaby(baby: Baby) {
+        const httpOptions = {
+            headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+        };
         const id : string = baby._id;
         const url = "http://angular2api2.azurewebsites.net/api/internships/" + id;
         return this.http.delete(url);

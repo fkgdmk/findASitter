@@ -8,6 +8,9 @@ import { Router } from '@angular/router';
 import { AuthService } from './../auth.service';
 import { UsersService } from '../users.service';
 import { User } from '../entities/user';
+import { NgRedux } from '@angular-redux/store';
+import { IAppState } from '../store';
+import { ADD_BABY } from '../actions';
 
 @Component({
   selector: 'app-register',
@@ -23,7 +26,8 @@ export class RegisterComponent implements OnInit {
   userCreated: boolean;
   spinner: boolean;
 
-  constructor(private data: DataService, private fb: FormBuilder, private router: Router, private usersService : UsersService) { }
+  constructor(private data: DataService, private fb: FormBuilder, private router: Router, private usersService : UsersService,
+    private ngRedux: NgRedux<IAppState>) { }
 
   ngOnInit() {
     this.userCreated = false;
@@ -54,9 +58,25 @@ export class RegisterComponent implements OnInit {
     if (this.registerBabyForm.valid) {
       this.spinner = true;
       let baby: Baby = this.registerBabyForm.value;
-      let foundBabies: Baby[];
-      
-      this.usersService.createBaby(baby).subscribe( x=> {
+
+      // Redux
+      this.usersService.createBaby(baby).subscribe(() => {
+        // Update UI
+        this.userCreated = true;
+        this.spinner = false;        
+        this.clearForm();
+
+        // Add the baby you just saved to the redux state (this is necessary due to auto-generated ID)
+        this.usersService.getUsers().subscribe( (result : any[]) => {
+          let foundBabies = result.filter(b => b.firstname === baby.firstname);
+          this.ngRedux.dispatch({type: ADD_BABY, baby: foundBabies[foundBabies.length-1]});
+          this.router.navigate(['userlist']);
+        });
+      })
+
+      // Old
+      /*
+      this.usersService.createBaby(baby).subscribe( () => {
         this.userCreated = true;
         this.spinner = false;
 
@@ -71,7 +91,7 @@ export class RegisterComponent implements OnInit {
           this.usersService.updateBabyUser(foundBabies[0]);
         });
       });
-
+      */
     } else {
       alert("Fill out all fields")
     }

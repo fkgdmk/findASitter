@@ -12,7 +12,7 @@
 <div class="container">
   <form novalidate [formGroup]="editBabyForm" (submit)="onSubmit(editBabyForm)">
     <div class="inputFieldsDiv">
-      <h3>Register Baby</h3>
+      <h3>Edit Baby</h3>
       <hr>
       <br>
       <div class="example-form">
@@ -29,8 +29,8 @@
           <input matInput placeholder="Gender" id="gender" formControlName="gender" required>
         </mat-form-field>
       </div>
-      <mat-spinner class="spinner" diameter="30" *ngIf="spinner == true"></mat-spinner>
-      <p class="created-succesfully" *ngIf="userCreated == true">Baby was created</p>
+      <!-- <mat-spinner class="spinner" diameter="30" *ngIf="spinner == true"></mat-spinner>
+      <p class="created-succesfully" *ngIf="userCreated == true">Baby was created</p> -->
       <button mat-raised-button color="primary" type="submit" id="createBaby">Register</button>
     </div>
   </form>

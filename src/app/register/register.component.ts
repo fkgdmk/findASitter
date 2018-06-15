@@ -20,13 +20,15 @@ export class RegisterComponent implements OnInit {
   private registerSitterForm;
   registrant: string;
   visible: boolean;
-  userCreated: boolean;
+  sitterCreated: boolean;
+  babyCreated: boolean;
   spinner: boolean;
 
   constructor(private data: DataService, private fb: FormBuilder, private router: Router, private usersService : UsersService) { }
 
   ngOnInit() {
-    this.userCreated = false;
+    this.babyCreated = false;
+    this.sitterCreated = false;
     this.spinner = false; 
 
     this.registerBabyForm = this.fb.group({
@@ -40,7 +42,6 @@ export class RegisterComponent implements OnInit {
     this.registerSitterForm = this.fb.group({
       firstname: [''],
       lastname: [''],
-      postalCode: [''],
       picture: [''],
       age: [''],
       gender: [''],
@@ -51,13 +52,13 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.registerBabyForm.valid) {
+    if (this.registerBabyForm.valid && this.registrant === 'baby') {
       this.spinner = true;
       let baby: Baby = this.registerBabyForm.value;
       let foundBabies: Baby[];
       
       this.usersService.createBaby(baby).subscribe( x=> {
-        this.userCreated = true;
+        this.babyCreated = true;
         this.spinner = false;
 
         console.log(this.usersService.loggedInUser.email);           
@@ -71,13 +72,17 @@ export class RegisterComponent implements OnInit {
           this.usersService.updateBabyUser(foundBabies[0]);
         });
       });
+    } else if (this.registerSitterForm.valid && this.registrant === 'sitter') {
+      this.spinner = true;
+      let sitter : Sitter = this.registerSitterForm.value;
 
+      this.usersService.createSitter(sitter).subscribe( x=> {
+        this.sitterCreated = true;
+        this.spinner = false;
+        this.clearForm();
+      });
     } else {
-      alert("Fill out all fields")
-    }
-
-    if (this.registrant === 'sitter') {
-
+      alert("Fill out all fields");
     }
     
     //this.router.navigate(['userlist']);
@@ -95,5 +100,17 @@ export class RegisterComponent implements OnInit {
       region: [''],
       phone: [''],
     });
+
+    this.registerSitterForm.reset({
+      firstname: [''],
+      lastname: [''],
+      postalCode: [''],
+      picture: [''],
+      age: [''],
+      gender: [''],
+      yearsOfExperience: [''],
+      region: [''],
+      phone: [''],
+    })
   }
 }

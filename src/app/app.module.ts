@@ -41,10 +41,10 @@ import { UserregisterComponent } from './userregister/userregister.component';
     RegisterComponent,
     PageNotFoundComponent,
     UserlistComponent,
-    UserComponent,
     FilterBabies,
     LandingComponent,
-    UserregisterComponent
+    UserregisterComponent,
+    UserComponent
   ],
   imports: [
     HttpClientModule,

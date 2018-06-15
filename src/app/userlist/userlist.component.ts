@@ -18,43 +18,58 @@ export class UserlistComponent implements OnInit {
   private sitters: Sitter[];
   private spinner: boolean;
   private showCards: boolean;
+  private type: string;
   baby: Baby;
 
-  constructor(private data: DataService, private usersService: UsersService, private router : Router) { }
+  constructor(private data: DataService, private usersService: UsersService, private router: Router) { }
 
   ngOnInit() {
+    this.type = 'baby';
     this.data.currentBaby.subscribe(baby => {
       this.baby = baby;
       console.log(baby);
     });
-    this.getUsers();
-
+    this.getUsers(this.type);
   }
 
-  onBabyClicked(baby){
+  onBabyClicked(baby) {
     console.log(baby);
   }
 
   deleteBaby(baby: Baby) {
-    console.log(baby);
-    this.usersService.deleteBaby(baby).subscribe( x => {
+    this.usersService.deleteBaby(baby).subscribe(x => {
       location.reload();
     });
   }
 
+  deleteSitter(sitter: Sitter) {
+    this.usersService.deleteSitter(sitter).subscribe(x => {
+      location.reload();
+      console.log("slettet");
+    });
+  }
+
   editBaby(baby: Baby) {
-    console.log(baby)
     this.data.changeCurrentBaby(baby);
+    this.data.changeCurrentUser("baby")
     //this.currentBaby = baby;
     this.router.navigate(['user']);
   }
 
-  getUsers () {
+  editSitter(sitter: Sitter) {
+    this.data.changeCurrentSitter(sitter);
+    this.data.changeCurrentUser("sitter")    
+    this.router.navigate(['user']);
+  }
+
+  getUsers(type: string) {
     this.showCards = true;
     this.spinner = true;
-    this.usersService.getUsers().subscribe( (result : any[]) => {
-      this.babies = result.filter(baby => baby.customerId === '4'); 
-      console.log(this.babies);
+    this.usersService.getUsers().subscribe((result: any[]) => {
+      this.babies = result.filter(baby => baby.customerId === '123baby');
+      this.spinner = false;
+
+      this.sitters = result.filter(sitter => sitter.customerId === '123sitter');
       this.spinner = false;
     });
   }

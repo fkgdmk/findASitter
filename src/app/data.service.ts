@@ -7,13 +7,27 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class DataService {
   
   baby : Baby;
+  sitter : Sitter;
+  user : string;
   private babySource = new BehaviorSubject<Baby>(this.baby);
-  currentBaby = this.babySource .asObservable();
+  private sitterSource = new BehaviorSubject<Sitter>(this.sitter);
+  private currentUserSource = new BehaviorSubject<string>(this.user);
+  currentBaby = this.babySource.asObservable();
+  currentSitter = this.sitterSource.asObservable();
+  currentUser = this.currentUserSource.asObservable();
 
   constructor() { }
 
   changeCurrentBaby (baby : Baby) {
-     this.babySource.next(baby);
+    this.babySource.next(baby);
+  }
+
+  changeCurrentSitter (sitter: Sitter) {
+    this.sitterSource.next(sitter);
+  }
+
+  changeCurrentUser (user : string) {
+    this.currentUserSource.next(user);
   }
 
 }

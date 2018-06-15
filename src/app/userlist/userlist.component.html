@@ -37,19 +37,19 @@
   <div *ngFor="let baby of babies | filterBabies: search">
     <mat-card>
       <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
+        <div mat-card-avatar class="baby-image"></div>
         <mat-card-title>{{baby.firstname}}</mat-card-title>
         <mat-card-subtitle>{{baby.age}} months</mat-card-subtitle>
       </mat-card-header>
       <img mat-card-image src="https://www.femina.dk/sites/femina.dk/files/media/article/tigerspring_baby.jpg" alt="Photo of a Shiba Inu">
       <mat-card-content>
-        <p>
-          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes
-          very well with mountainous terrain, the Shiba Inu was originally bred for hunting.
-        </p>
+        <p><span style="font-weight: bold">Age:</span> {{baby.age}}</p>      
+          <p><span style="font-weight: bold">Gender:</span> {{baby.gender}}</p>
+          <p><span style="font-weight: bold">Postalcode:</span> {{baby.postalCode}}</p>      
+          <p><span style="font-weight: bold">Region:</span> Copenhagen</p>      
       </mat-card-content>
       <mat-card-actions>
-        <button mat-button>Apply</button>
+        <button mat-button>More Info</button>
         <button mat-button (click)="editBaby(baby)">Edit</button>
         <button mat-button (click)="deleteBaby(baby)">Delete</button>
       </mat-card-actions>
@@ -58,19 +58,20 @@
   <div *ngFor="let sitter of sitters">
     <mat-card>
       <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>{{sitter.firstname}}</mat-card-title>
-        <mat-card-subtitle>{{sitter.age}} years</mat-card-subtitle>
+        <div mat-card-avatar class="sitter-image"></div>
+        <mat-card-title>{{sitter.firstname}} {{sitter.lastname}}</mat-card-title>
+        <mat-card-subtitle>{{sitter.yearsOfExperience}} years of experience</mat-card-subtitle>
       </mat-card-header>
       <img mat-card-image src="https://www.femina.dk/sites/femina.dk/files/media/article/tigerspring_baby.jpg" alt="Photo of a Shiba Inu">
       <mat-card-content>
-        <p>
-          This is a sitter
-        </p>
+        <p><span style="font-weight: bold">Age:</span> {{sitter.age}}</p>
+        <p><span style="font-weight: bold">Gender:</span> {{sitter.gender}}</p>
+        <p><span style="font-weight: bold">Region:</span> {{sitter.region}}</p>
+        <p><span style="font-weight: bold">Phonenumber:</span> {{sitter.phone}}</p>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-button>Apply</button>
-        <button mat-button>Edit</button>
+        <button mat-button>More Info</button>
+        <button mat-button (click)="editSitter(sitter)">Edit</button>
         <button mat-button (click)="deleteSitter(sitter)">Delete</button>
       </mat-card-actions>
     </mat-card>

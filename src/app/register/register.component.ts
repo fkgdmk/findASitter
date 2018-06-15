@@ -19,13 +19,15 @@ export class RegisterComponent implements OnInit {
   private registerSitterForm;
   registrant: string;
   visible: boolean;
-  userCreated: boolean;
+  sitterCreated: boolean;
+  babyCreated: boolean;
   spinner: boolean;
 
   constructor(private data: DataService, private fb: FormBuilder, private router: Router, private usersService : UsersService) { }
 
   ngOnInit() {
-    this.userCreated = false;
+    this.babyCreated = false;
+    this.sitterCreated = false;
     this.spinner = false; 
 
     this.registerBabyForm = this.fb.group({
@@ -39,7 +41,6 @@ export class RegisterComponent implements OnInit {
     this.registerSitterForm = this.fb.group({
       firstname: [''],
       lastname: [''],
-      postalCode: [''],
       picture: [''],
       age: [''],
       gender: [''],
@@ -55,16 +56,17 @@ export class RegisterComponent implements OnInit {
       let baby: Baby = this.registerBabyForm.value;
       
       this.usersService.createBaby(baby).subscribe( x=> {
-        this.userCreated = true;
+        this.babyCreated = true;
         this.spinner = false;
         this.clearForm();
       });
     } else if (this.registerSitterForm.valid && this.registrant === 'sitter') {
+      this.spinner = true;
       let sitter : Sitter = this.registerSitterForm.value;
-      console.log(sitter);
 
       this.usersService.createSitter(sitter).subscribe( x=> {
-        console.log("test");
+        this.sitterCreated = true;
+        this.spinner = false;
         this.clearForm();
       });
     } else {
@@ -86,5 +88,17 @@ export class RegisterComponent implements OnInit {
       region: [''],
       phone: [''],
     });
+
+    this.registerSitterForm.reset({
+      firstname: [''],
+      lastname: [''],
+      postalCode: [''],
+      picture: [''],
+      age: [''],
+      gender: [''],
+      yearsOfExperience: [''],
+      region: [''],
+      phone: [''],
+    })
   }
 }

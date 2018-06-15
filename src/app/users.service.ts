@@ -23,7 +23,7 @@ export class UsersService  {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         };
         const url = "http://angular2api2.azurewebsites.net/api/internships/" + id;
-        return this.http.put(url, baby, httpOptions)
+        return this.http.put(url, baby)
     }
 
     deleteBaby(baby: Baby): Observable<{}> {

@@ -40,9 +40,9 @@ import { LandingComponent } from './landing/landing.component';
     RegisterComponent,
     PageNotFoundComponent,
     UserlistComponent,
-    UserComponent,
     FilterBabies,
-    LandingComponent
+    LandingComponent,
+    UserComponent
   ],
   imports: [
     HttpClientModule,

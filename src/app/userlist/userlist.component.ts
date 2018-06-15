@@ -50,9 +50,15 @@ export class UserlistComponent implements OnInit {
   }
 
   editBaby(baby: Baby) {
-    console.log(baby)
     this.data.changeCurrentBaby(baby);
+    this.data.changeCurrentUser("baby")
     //this.currentBaby = baby;
+    this.router.navigate(['user']);
+  }
+
+  editSitter(sitter: Sitter) {
+    this.data.changeCurrentSitter(sitter);
+    this.data.changeCurrentUser("sitter")    
     this.router.navigate(['user']);
   }
 
@@ -61,13 +67,10 @@ export class UserlistComponent implements OnInit {
     this.spinner = true;
     this.usersService.getUsers().subscribe((result: any[]) => {
       this.babies = result.filter(baby => baby.customerId === '123baby');
-      console.log(this.babies);
       this.spinner = false;
 
       this.sitters = result.filter(sitter => sitter.customerId === '123sitter');
-      console.log(this.sitters);
       this.spinner = false;
-
     });
   }
 

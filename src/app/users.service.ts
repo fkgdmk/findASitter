@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders, HttpErrorResponse } from "@angular/common/http"
 import { Baby } from "./entities/baby";
-import { Sitter } from "./entities/sitter";
+import { Sitter, ISitter } from "./entities/sitter";
 import { Observable } from 'rxjs/Observable';
 import { catchError } from 'rxjs/operators';
 import { User } from "./entities/user";
@@ -67,7 +67,7 @@ export class UsersService  {
         return this.http.post("http://angular2api2.azurewebsites.net/api/internships", sitter);
     }
 
-    updateSitter (sitter: Sitter, id) {
+    updateSitter (sitter: ISitter, id) {
         const httpOptions = {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         };

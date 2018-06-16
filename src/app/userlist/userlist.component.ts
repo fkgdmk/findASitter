@@ -2,7 +2,7 @@ import { UsersService } from '.././users.service';
 import { Component, OnInit, Injectable, Input, Output, EventEmitter } from '@angular/core';
 import { DataService } from '../data.service';
 import { Baby, IBaby } from '../entities/baby';
-import { Sitter } from '../entities/sitter';
+import { Sitter, ISitter } from '../entities/sitter';
 import { Router } from '@angular/router';
 import { INITIAL_STATE, IAppState } from '../store';
 import { NgRedux, select } from '@angular-redux/store';
@@ -21,7 +21,7 @@ export class UserlistComponent implements OnInit {
   @select('babies') babies: IBaby[];
 
   //Old
-  private sitters: Sitter[];
+  private sitters: ISitter[];
   private spinner: boolean;
   private showCards: boolean;
   private type: string;
@@ -96,8 +96,7 @@ export class UserlistComponent implements OnInit {
     this.showCards = true;
     this.spinner = true;
     this.usersService.getUsers().subscribe((result: any[]) => {
-      this.babies = result.filter(baby => baby.customerId === '123baby');
-      this.spinner = false;
+      //this.babies = result.filter(baby => baby.customerId === '123baby');
 
       this.sitters = result.filter(sitter => sitter.customerId === '123sitter');
       this.spinner = false;

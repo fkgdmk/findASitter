@@ -63,7 +63,7 @@ export class RegisterComponent implements OnInit {
       // Redux
       this.usersService.createBaby(baby).subscribe(() => {
         // Update UI
-        this.userCreated = true;
+        this.babyCreated = true;
         this.spinner = false;        
         this.clearForm();
 

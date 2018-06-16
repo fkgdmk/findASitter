@@ -23,14 +23,16 @@ export class RegisterComponent implements OnInit {
   private registerSitterForm;
   registrant: string;
   visible: boolean;
-  userCreated: boolean;
+  sitterCreated: boolean;
+  babyCreated: boolean;
   spinner: boolean;
 
   constructor(private data: DataService, private fb: FormBuilder, private router: Router, private usersService : UsersService,
     private ngRedux: NgRedux<IAppState>) { }
 
   ngOnInit() {
-    this.userCreated = false;
+    this.babyCreated = false;
+    this.sitterCreated = false;
     this.spinner = false; 
 
     this.registerBabyForm = this.fb.group({
@@ -44,7 +46,6 @@ export class RegisterComponent implements OnInit {
     this.registerSitterForm = this.fb.group({
       firstname: [''],
       lastname: [''],
-      postalCode: [''],
       picture: [''],
       age: [''],
       gender: [''],
@@ -55,10 +56,10 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.registerBabyForm.valid) {
+    if (this.registerBabyForm.valid && this.registrant === 'baby') {
       this.spinner = true;
       let baby: Baby = this.registerBabyForm.value;
-
+      
       // Redux
       this.usersService.createBaby(baby).subscribe(() => {
         // Update UI
@@ -78,28 +79,38 @@ export class RegisterComponent implements OnInit {
       /*
       this.usersService.createBaby(baby).subscribe( () => {
         this.userCreated = true;
-        this.spinner = false;
+        let foundBabies: Baby[];
+      
+        this.usersService.createBaby(baby).subscribe( x=> {
+          this.babyCreated = true;
+          mergeTest
+          this.spinner = false;
 
-        console.log(this.usersService.loggedInUser.email);           
-        this.clearForm();
+          console.log(this.usersService.loggedInUser.email);           
+          this.clearForm();
 
-        this.usersService.updateUser(this.usersService.loggedInUser, "123baby");
+          this.usersService.updateUser(this.usersService.loggedInUser, "123baby");
 
-        this.usersService.getUsers().subscribe( (result : any[]) => {
-          foundBabies = result.filter(aBaby => aBaby.firstname === baby.firstname); 
-          console.log(foundBabies);
-          this.usersService.updateBabyUser(foundBabies[0]);
+          this.usersService.getUsers().subscribe( (result : any[]) => {
+            foundBabies = result.filter(aBaby => aBaby.firstname === baby.firstname); 
+            console.log(foundBabies);
+            this.usersService.updateBabyUser(foundBabies[0]);
         });
       });
       */
+    } else if (this.registerSitterForm.valid && this.registrant === 'sitter') {
+      this.spinner = true;
+      let sitter : Sitter = this.registerSitterForm.value;
+
+      this.usersService.createSitter(sitter).subscribe( x=> {
+        // Update UI
+        this.sitterCreated = true;
+        this.spinner = false;
+        this.clearForm();
+      });
     } else {
-      alert("Fill out all fields")
+      alert("Fill out all fields");
     }
-
-    if (this.registrant === 'sitter') {
-
-    }
-    
     //this.router.navigate(['userlist']);
   }
 
@@ -115,5 +126,17 @@ export class RegisterComponent implements OnInit {
       region: [''],
       phone: [''],
     });
+
+    this.registerSitterForm.reset({
+      firstname: [''],
+      lastname: [''],
+      postalCode: [''],
+      picture: [''],
+      age: [''],
+      gender: [''],
+      yearsOfExperience: [''],
+      region: [''],
+      phone: [''],
+    })
   }
 }

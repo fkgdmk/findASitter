@@ -53,10 +53,10 @@ import { reducer } from './reducers';
     RegisterComponent,
     PageNotFoundComponent,
     UserlistComponent,
-    UserComponent,
     FilterBabies,
     LandingComponent,
     UserregisterComponent,
+    UserComponent
   ],
   imports: [
     HttpClientModule,

@@ -1,5 +1,6 @@
 mat-card {
     max-width: 300px;
+    height: 430px;
     margin: 6px;
 }
 
@@ -24,4 +25,22 @@ mat-spinner {
     background-size: cover;
     background-repeat: no-repeat;
     background-position-x: 80%
+}
+
+// .mat-card-avatar {
+//     height: $md-card-header-size;
+//     width: $md-card-header-size;
+//     border-radius: 50%;
+// }
+
+.sitter-image { 
+    background-image: url('http://s3.amazonaws.com/37assets/svn/765-default-avatar.png'); 
+    background-size: cover; 
+    width: 40px; 
+}
+
+.baby-image { 
+    background-image: url('https://st2.depositphotos.com/4111759/12123/v/950/depositphotos_121231642-stock-illustration-baby-default-placeholder-children-avatar.jpg'); 
+    background-size: cover; 
+    width: 40px; 
 }

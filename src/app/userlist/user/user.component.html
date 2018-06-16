@@ -1,17 +1,6 @@
-<!-- 
-  <ul class="babies" (click)="onBabyClick(babyInput)">
-    <li>
-      Firstname: {{ babyInput.firstname }}<br>
-      Postalcode: {{ babyInput.postalCode }}<br>
-      Age: {{ babyInput.age }}<br>
-      Gender: {{ babyInput.gender }}<br>
-      Picture: {{ babyInput.picture }}<br>    
-      <br><br>
-    </li>
-  </ul> -->
 <div class="container">
-  <form novalidate [formGroup]="editBabyForm" (submit)="onSubmit(editBabyForm)">
-    <div class="inputFieldsDiv">
+  <div class="inputFieldsDiv" *ngIf="currentUser == 'baby'">
+    <form novalidate [formGroup]="editBabyForm" (submit)="onSubmit(editBabyForm)">
       <h3>Edit Baby</h3>
       <hr>
       <br>
@@ -29,9 +18,46 @@
           <input matInput placeholder="Gender" id="gender" formControlName="gender" required>
         </mat-form-field>
       </div>
-      <!-- <mat-spinner class="spinner" diameter="30" *ngIf="spinner == true"></mat-spinner>
-      <p class="created-succesfully" *ngIf="userCreated == true">Baby was created</p> -->
-      <button mat-raised-button color="primary" type="submit" id="createBaby">Register</button>
-    </div>
-  </form>
+      <mat-spinner class="spinner" diameter="30" *ngIf="spinner == true"></mat-spinner>
+      <p class="created-succesfully" *ngIf="userCreated == true">Baby was created</p>
+      <button mat-raised-button color="primary" type="submit" id="createBaby">Confirm</button>
+    </form>
+  </div>
+
+  <div class="inputFieldsDiv" *ngIf="currentUser == 'sitter'">
+    <form novalidate [formGroup]="editSitterForm" (submit)="onSubmit(editSitterForm)">
+      <h3>Edit Babysitter</h3>
+      <hr>
+      <br>
+      <div class="example-form">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Firstname" id="firstname" formControlName="firstname" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Lastname" id="lastname" formControlName="lastname" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Age" id="age" formControlName="age" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Gender" id="gender" formControlName="gender" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Region" id="region" formControlName="region" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Picture" id="picture" formControlName="picture" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Years of experience" id="yearsOfExperience" formControlName="yearsOfExperience" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Phone" id="phone" formControlName="phone" required>
+        </mat-form-field>
+      </div>
+      <mat-spinner class="spinner" diameter="30" *ngIf="spinner == true"></mat-spinner>
+      <p class="created-succesfully" *ngIf="sitterCreated == true">Sitter was created</p>
+      <button mat-raised-button color="primary" type="submit" id="createSitter">Confirm</button>
+    </form>
+  </div>
 </div>

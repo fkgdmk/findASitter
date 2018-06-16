@@ -24,35 +24,35 @@ export class UserlistComponent implements OnInit {
   private sitters: Sitter[];
   private spinner: boolean;
   private showCards: boolean;
+  private type: string;
+  baby: Baby;
+
 
   constructor(private data: DataService, private usersService: UsersService, private router : Router, 
     private ngRedux: NgRedux<IAppState>) { }
 
   ngOnInit() {
-    /*
+    this.type = 'baby';
     this.data.currentBaby.subscribe(baby => {
       this.baby = baby;
       console.log(baby);
-    });*/
-    //this.getUsers();
-
+    });
+    this.getUsers(this.type);
+    
     // Somehow wait for dispatch fetching data from web API to finish?
     console.log(this.ngRedux.getState())
     //this.babies = this.ngRedux.getState().babies;
     this.sitters = this.ngRedux.getState().sitters;
 
     this.spinner = false;
-    console.log("After spinner")
-    console.log(this.babies)
   }
 
-  onBabyClicked(baby){
+  onBabyClicked(baby) {
     console.log(baby);
   }
 
   deleteBaby(baby: Baby) {    
     //Redux
-    //this.ngRedux.dispatch({type: REMOVE_BABY, id: baby._id})
     this.usersService.deleteBaby(baby).subscribe( () => {
       this.babies = this.babies.filter((b) => {
         if (b._id != null) {
@@ -61,10 +61,9 @@ export class UserlistComponent implements OnInit {
           console.log("b_id is null.")
         }
       })
-      location.reload();
-    });
-
+    })
     this.ngRedux.dispatch({type: REMOVE_BABY, id: baby._id})
+    
     /*
     //Old
     this.usersService.deleteBaby(baby).subscribe( x => {
@@ -73,22 +72,35 @@ export class UserlistComponent implements OnInit {
     });*/
   }
 
+  deleteSitter(sitter: Sitter) {
+    this.usersService.deleteSitter(sitter).subscribe(x => {
+      location.reload();
+      console.log("slettet");
+    });
+  }
+
   editBaby(baby: Baby) {
-    console.log(baby)
     this.data.changeCurrentBaby(baby);
+    this.data.changeCurrentUser("baby")
     //this.currentBaby = baby;
     this.router.navigate(['user']);
   }
 
-  getUsers () {
+  editSitter(sitter: Sitter) {
+    this.data.changeCurrentSitter(sitter);
+    this.data.changeCurrentUser("sitter")    
+    this.router.navigate(['user']);
+  }
+
+  getUsers(type: string) {
     this.showCards = true;
     this.spinner = true;
-    this.usersService.getUsers().subscribe( (result : any[]) => {
-      this.babies = result.filter(baby => baby.customerId === '4'); 
-      console.log(this.babies);
+    this.usersService.getUsers().subscribe((result: any[]) => {
+      this.babies = result.filter(baby => baby.customerId === '123baby');
+      this.spinner = false;
+
+      this.sitters = result.filter(sitter => sitter.customerId === '123sitter');
       this.spinner = false;
     });
   }
-
-
 }

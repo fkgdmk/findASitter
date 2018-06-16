@@ -12,13 +12,13 @@ import { UserComponent } from './userlist/user/user.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
-  { path: 'landing', component: LandingComponent, canActivate: [AuthGuard],
+  { path: 'landing', component: LandingComponent,
   children: [
     { path: 'contact', component: ContactComponent},
   ] },
   { path: 'login', component: LoginComponent },
   { path: 'userregister', component: UserregisterComponent },
-  { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
+  { path: 'register', component: RegisterComponent},
   { path: 'userlist', component: UserlistComponent },
   { path: 'user', component: UserComponent},
   { path: '**', component: PageNotFoundComponent },

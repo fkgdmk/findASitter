@@ -32,11 +32,9 @@ export class UsersService  {
         return this.http.put(url, newUser, httpOptions);
     }
   
-
     getUsers() {
         return this.http.get("http://angular2api1.azurewebsites.net/api/internships/getall");
     }
-
 
     updateBaby (baby: Baby, id) {
         const httpOptions = {
@@ -58,17 +56,10 @@ export class UsersService  {
         return this.http.put(url, newBaby, httpOptions)
     }
 
-    deleteBaby(baby: Baby): Observable<{}> {
-        const httpOptions = {
-            headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-        };
-
+    deleteBaby(baby: Baby) {
         const id : string = baby._id;
         const url = "http://angular2api2.azurewebsites.net/api/internships/" + id;
-        return this.http.delete(url, httpOptions)
-            // .pipe(
-            //     catchError(this.handleError(deleteBaby))
-            // );
+        return this.http.delete(url)
     }
 
     createSitter(sitter : Sitter) {
@@ -89,8 +80,6 @@ export class UsersService  {
         const url = "http://angular2api2.azurewebsites.net/api/internships/" + id;
         return this.http.delete(url);
     }
-
-    
 
     private handleError(error: HttpErrorResponse) {
         if (error.error instanceof ErrorEvent) {

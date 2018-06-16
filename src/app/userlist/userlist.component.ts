@@ -1,9 +1,12 @@
 import { UsersService } from '.././users.service';
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, OnInit, Injectable, Input, Output, EventEmitter } from '@angular/core';
 import { DataService } from '../data.service';
-import { Baby } from '../entities/baby';
+import { Baby, IBaby } from '../entities/baby';
 import { Sitter } from '../entities/sitter';
 import { Router } from '@angular/router';
+import { INITIAL_STATE, IAppState } from '../store';
+import { NgRedux, select } from '@angular-redux/store';
+import { REMOVE_BABY } from '../actions';
 
 @Component({
   selector: 'app-userlist',
@@ -14,14 +17,19 @@ import { Router } from '@angular/router';
 @Injectable()
 export class UserlistComponent implements OnInit {
 
-  private babies: Baby[];
+  //Redux
+  @select('babies') babies: IBaby[];
+
+  //Old
   private sitters: Sitter[];
   private spinner: boolean;
   private showCards: boolean;
   private type: string;
   baby: Baby;
 
-  constructor(private data: DataService, private usersService: UsersService, private router: Router) { }
+
+  constructor(private data: DataService, private usersService: UsersService, private router : Router, 
+    private ngRedux: NgRedux<IAppState>) { }
 
   ngOnInit() {
     this.type = 'baby';
@@ -30,16 +38,38 @@ export class UserlistComponent implements OnInit {
       console.log(baby);
     });
     this.getUsers(this.type);
+    
+    // Somehow wait for dispatch fetching data from web API to finish?
+    console.log(this.ngRedux.getState())
+    //this.babies = this.ngRedux.getState().babies;
+    this.sitters = this.ngRedux.getState().sitters;
+
+    this.spinner = false;
   }
 
   onBabyClicked(baby) {
     console.log(baby);
   }
 
-  deleteBaby(baby: Baby) {
-    this.usersService.deleteBaby(baby).subscribe(x => {
+  deleteBaby(baby: Baby) {    
+    //Redux
+    this.usersService.deleteBaby(baby).subscribe( () => {
+      this.babies = this.babies.filter((b) => {
+        if (b._id != null) {
+          b._id !== baby._id
+        } else {
+          console.log("b_id is null.")
+        }
+      })
+    })
+    this.ngRedux.dispatch({type: REMOVE_BABY, id: baby._id})
+    
+    /*
+    //Old
+    this.usersService.deleteBaby(baby).subscribe( x => {
+      this.babies = this.babies.filter((b) => b._id !== baby._id)
       location.reload();
-    });
+    });*/
   }
 
   deleteSitter(sitter: Sitter) {
@@ -73,6 +103,4 @@ export class UserlistComponent implements OnInit {
       this.spinner = false;
     });
   }
-
-
 }

@@ -1,43 +1,17 @@
-<!-- <p>Babies:</p>
-  <ul class="babies">
-    <li *ngFor="let baby of babies">
-      Firstname: {{ baby.firstname }}<br>
-      Postalcode: {{ baby.postalCode }}<br>
-      Age: {{ baby.age }}<br>
-      Gender: {{ baby.gender }}<br>
-      Picture: {{ baby.picture }}<br>
-      <button type="submit" class="deleteBtn" (click)="deleteItem(baby, babies)">Delete</button>
-      <button type="submit">Edit</button>      
-      <br><br>
-    </li>
-  </ul>
-<p>Babysitters:</p>
-<ul>
-  <li *ngFor="let sitter of sitters">
-    Firstname: {{ sitter.firstname }}<br>
-    Lastname: {{ sitter.lastname }}<br>
-    Age: {{ sitter.age }}<br>
-    Gender: {{ sitter.gender }}<br>
-    Picture: {{ sitter.picture }}<br>
-    <button type="submit" (click)="deleteItem(sitter, sitters)">Delete</button>
-    <button type="submit" (click)="editItem(sitter)">Edit</button>
-    <br><br>
-  </li>
-</ul> -->
-
 <div class="spinner-div">
   <mat-spinner diameter="150" *ngIf="spinner == true"></mat-spinner>
 </div>
 
-<mat-form-field class="search-box" *ngIf="spinner == false">
+<!-- <mat-form-field class="search-box" *ngIf="spinner == false"> -->
+<!-- <mat-form-field class="search-box">
   <input matInput placeholder="Search" [(ngModel)]="search">
-</mat-form-field>
+</mat-form-field> -->
 
 <div id="card-container">
-  <div *ngFor="let baby of babies | filterBabies: search">
+  <div *ngFor="let baby of babies | filterBabies: search | async">
     <mat-card>
       <mat-card-header>
-        <div mat-card-avatar class="baby-image"></div>
+        <div mat-card-avatar class="avatar-image"></div>
         <mat-card-title>{{baby.firstname}}</mat-card-title>
         <mat-card-subtitle>{{baby.age}} months</mat-card-subtitle>
       </mat-card-header>
@@ -84,3 +58,30 @@
         </app-user>
       </div>
     </div> -->
+
+    <!-- <p>Babies:</p>
+  <ul class="babies">
+    <li *ngFor="let baby of babies">
+      Firstname: {{ baby.firstname }}<br>
+      Postalcode: {{ baby.postalCode }}<br>
+      Age: {{ baby.age }}<br>
+      Gender: {{ baby.gender }}<br>
+      Picture: {{ baby.picture }}<br>
+      <button type="submit" class="deleteBtn" (click)="deleteItem(baby, babies)">Delete</button>
+      <button type="submit">Edit</button>      
+      <br><br>
+    </li>
+  </ul>
+<p>Babysitters:</p>
+<ul>
+  <li *ngFor="let sitter of sitters">
+    Firstname: {{ sitter.firstname }}<br>
+    Lastname: {{ sitter.lastname }}<br>
+    Age: {{ sitter.age }}<br>
+    Gender: {{ sitter.gender }}<br>
+    Picture: {{ sitter.picture }}<br>
+    <button type="submit" (click)="deleteItem(sitter, sitters)">Delete</button>
+    <button type="submit" (click)="editItem(sitter)">Edit</button>
+    <br><br>
+  </li>
+</ul> -->

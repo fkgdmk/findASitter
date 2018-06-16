@@ -8,6 +8,9 @@ import { Router } from '@angular/router';
 import { AuthService } from './../auth.service';
 import { UsersService } from '../users.service';
 import { User } from '../entities/user';
+import { NgRedux } from '@angular-redux/store';
+import { IAppState } from '../store';
+import { ADD_BABY } from '../actions';
 
 @Component({
   selector: 'app-register',
@@ -24,7 +27,8 @@ export class RegisterComponent implements OnInit {
   babyCreated: boolean;
   spinner: boolean;
 
-  constructor(private data: DataService, private fb: FormBuilder, private router: Router, private usersService : UsersService) { }
+  constructor(private data: DataService, private fb: FormBuilder, private router: Router, private usersService : UsersService,
+    private ngRedux: NgRedux<IAppState>) { }
 
   ngOnInit() {
     this.babyCreated = false;
@@ -55,28 +59,51 @@ export class RegisterComponent implements OnInit {
     if (this.registerBabyForm.valid && this.registrant === 'baby') {
       this.spinner = true;
       let baby: Baby = this.registerBabyForm.value;
-      let foundBabies: Baby[];
       
-      this.usersService.createBaby(baby).subscribe( x=> {
-        this.babyCreated = true;
-        this.spinner = false;
-
-        console.log(this.usersService.loggedInUser.email);           
+      // Redux
+      this.usersService.createBaby(baby).subscribe(() => {
+        // Update UI
+        this.userCreated = true;
+        this.spinner = false;        
         this.clearForm();
 
-        this.usersService.updateUser(this.usersService.loggedInUser, "123baby");
-
+        // Add the baby you just saved to the redux state (this is necessary due to auto-generated ID)
         this.usersService.getUsers().subscribe( (result : any[]) => {
-          foundBabies = result.filter(aBaby => aBaby.firstname === baby.firstname); 
-          console.log(foundBabies);
-          this.usersService.updateBabyUser(foundBabies[0]);
+          let foundBabies = result.filter(b => b.firstname === baby.firstname);
+          this.ngRedux.dispatch({type: ADD_BABY, baby: foundBabies[foundBabies.length-1]});
+          this.router.navigate(['userlist']);
+        });
+      })
+
+      // Old
+      /*
+      this.usersService.createBaby(baby).subscribe( () => {
+        this.userCreated = true;
+        let foundBabies: Baby[];
+      
+        this.usersService.createBaby(baby).subscribe( x=> {
+          this.babyCreated = true;
+          mergeTest
+          this.spinner = false;
+
+          console.log(this.usersService.loggedInUser.email);           
+          this.clearForm();
+
+          this.usersService.updateUser(this.usersService.loggedInUser, "123baby");
+
+          this.usersService.getUsers().subscribe( (result : any[]) => {
+            foundBabies = result.filter(aBaby => aBaby.firstname === baby.firstname); 
+            console.log(foundBabies);
+            this.usersService.updateBabyUser(foundBabies[0]);
         });
       });
+      */
     } else if (this.registerSitterForm.valid && this.registrant === 'sitter') {
       this.spinner = true;
       let sitter : Sitter = this.registerSitterForm.value;
 
       this.usersService.createSitter(sitter).subscribe( x=> {
+        // Update UI
         this.sitterCreated = true;
         this.spinner = false;
         this.clearForm();
@@ -84,7 +111,6 @@ export class RegisterComponent implements OnInit {
     } else {
       alert("Fill out all fields");
     }
-    
     //this.router.navigate(['userlist']);
   }
 

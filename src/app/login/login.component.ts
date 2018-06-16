@@ -4,6 +4,10 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { Router } from '@angular/router';
 import { UsersService } from '../users.service';
 import { User } from '../entities/user';
+import { NgRedux, select } from '@angular-redux/store';
+import { IAppState, INITIAL_STATE } from '../store';
+import { FETCH_DATA, LOGIN } from '../actions';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -12,36 +16,36 @@ import { User } from '../entities/user';
 })
 export class LoginComponent implements OnInit {
   private loginForm: FormGroup;
-  private users: User[];
+
+  //Redux
+  @select('users') users;
 
   // DI - Dependency Injection
   constructor(private fb: FormBuilder, private router: Router,
-    private authService: AuthService, private usersService: UsersService) {
+    private authService: AuthService, private usersService: UsersService,
+    private ngRedux: NgRedux<IAppState>, private http: HttpClient) {
   }
 
   onSubmitLogin(loginForm) {
-    console.log("Login form:");
-    console.log(loginForm);
-
-    // Send a request to the server
     // Try to login
     if (loginForm.valid) {
-      // Send an http requestu
-      console.log("valid");
+      console.log("Valid form");
 
-      for (let i = 0; i < this.users.length; i++) {
-        let element: User = this.users[i];
+      // Update users because this component was loaded before the users were updated     
+      let userList = this.ngRedux.getState().users;
+
+      for (let i = 0; i < userList.length; i++) {
+        let element: User = userList[i];
         if (element.email == loginForm.value.username) {
           if (element.password === loginForm.value.password) {
             this.authService.login().subscribe(() => {
               console.log("Now I am logged in!");
               this.usersService.loggedInUser = element;
+              this.ngRedux.dispatch({type: LOGIN, loggedInUser: element});
             })
           }
         }
       }
-      console.log("Before or after?");
-
 
       // this.router.navigate(['contact']); // Navigate
     } else {
@@ -61,12 +65,18 @@ export class LoginComponent implements OnInit {
     this.usersService.getUsers().subscribe( (result : any[]) => {
       this.users = result.filter(user => user.customerId === '123user'); 
       console.log(this.users);
+      console.log("Hello!")
     });
+  }
+
+  fetchUsers() {
+    this.ngRedux.dispatch({type: FETCH_DATA, http: this.http})
   }
 
   ngOnInit() {
     this.createForm();
-    this.getUsers();
+    //this.getUsers();
+    this.fetchUsers();
   }
 
 }

@@ -1,4 +1,65 @@
-<!-- <p>Babies:</p>
+<div class="spinner-div">
+  <mat-spinner diameter="150" *ngIf="spinner == true"></mat-spinner>
+</div>
+
+<!-- <mat-form-field class="search-box" *ngIf="spinner == false"> -->
+<!-- <mat-form-field class="search-box">
+  <input matInput placeholder="Search" [(ngModel)]="search">
+</mat-form-field> -->
+
+<div id="card-container">
+  <div *ngFor="let baby of babies | filterBabies: search | async">
+    <mat-card>
+      <mat-card-header>
+        <div mat-card-avatar class="avatar-image"></div>
+        <mat-card-title>{{baby.firstname}}</mat-card-title>
+        <mat-card-subtitle>{{baby.age}} months</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="https://www.femina.dk/sites/femina.dk/files/media/article/tigerspring_baby.jpg" alt="Photo of a Shiba Inu">
+      <mat-card-content>
+        <p><span style="font-weight: bold">Age:</span> {{baby.age}}</p>      
+          <p><span style="font-weight: bold">Gender:</span> {{baby.gender}}</p>
+          <p><span style="font-weight: bold">Postalcode:</span> {{baby.postalCode}}</p>      
+          <p><span style="font-weight: bold">Region:</span> Copenhagen</p>      
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>More Info</button>
+        <button mat-button (click)="editBaby(baby)">Edit</button>
+        <button mat-button (click)="deleteBaby(baby)">Delete</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div *ngFor="let sitter of sitters">
+    <mat-card>
+      <mat-card-header>
+        <div mat-card-avatar class="sitter-image"></div>
+        <mat-card-title>{{sitter.firstname}} {{sitter.lastname}}</mat-card-title>
+        <mat-card-subtitle>{{sitter.yearsOfExperience}} years of experience</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="https://dealnews.a.ssl.fastly.net/files/uploads/babysitter-kids.jpg" alt="Photo of a Shiba Inu">
+      <mat-card-content>
+        <p><span style="font-weight: bold">Age:</span> {{sitter.age}}</p>
+        <p><span style="font-weight: bold">Gender:</span> {{sitter.gender}}</p>
+        <p><span style="font-weight: bold">Region:</span> {{sitter.region}}</p>
+        <p><span style="font-weight: bold">Phonenumber:</span> {{sitter.phone}}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>More Info</button>
+        <button mat-button (click)="editSitter(sitter)">Edit</button>
+        <button mat-button (click)="deleteSitter(sitter)">Delete</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+
+<!-- <div id="card-container">
+      <div *ngFor="let baby of babies | filterBabies: search">
+        <app-user [babyInput]="baby" (babyClicked)="onBabyClicked($event)">
+        </app-user>
+      </div>
+    </div> -->
+
+    <!-- <p>Babies:</p>
   <ul class="babies">
     <li *ngFor="let baby of babies">
       Firstname: {{ baby.firstname }}<br>
@@ -24,63 +85,3 @@
     <br><br>
   </li>
 </ul> -->
-
-<div class="spinner-div">
-  <mat-spinner diameter="150" *ngIf="spinner == true"></mat-spinner>
-</div>
-
-<mat-form-field class="search-box" *ngIf="spinner == false">
-  <input matInput placeholder="Search" [(ngModel)]="search">
-</mat-form-field>
-
-<div id="card-container">
-  <div *ngFor="let baby of babies | filterBabies: search">
-    <mat-card>
-      <mat-card-header>
-        <div mat-card-avatar class="baby-image"></div>
-        <mat-card-title>{{baby.firstname}}</mat-card-title>
-        <mat-card-subtitle>{{baby.age}} months</mat-card-subtitle>
-      </mat-card-header>
-      <img mat-card-image src="https://www.femina.dk/sites/femina.dk/files/media/article/tigerspring_baby.jpg" alt="Photo of a Shiba Inu">
-      <mat-card-content>
-        <p><span style="font-weight: bold">Age:</span> {{baby.age}}</p>      
-          <p><span style="font-weight: bold">Gender:</span> {{baby.gender}}</p>
-          <p><span style="font-weight: bold">Postalcode:</span> {{baby.postalCode}}</p>      
-          <p><span style="font-weight: bold">Region:</span> Copenhagen</p>      
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>More Info</button>
-        <button mat-button (click)="editBaby(baby)">Edit</button>
-        <button mat-button (click)="deleteBaby(baby)">Delete</button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
-  <div *ngFor="let sitter of sitters">
-    <mat-card>
-      <mat-card-header>
-        <div mat-card-avatar class="sitter-image"></div>
-        <mat-card-title>{{sitter.firstname}} {{sitter.lastname}}</mat-card-title>
-        <mat-card-subtitle>{{sitter.yearsOfExperience}} years of experience</mat-card-subtitle>
-      </mat-card-header>
-      <img mat-card-image src="https://www.femina.dk/sites/femina.dk/files/media/article/tigerspring_baby.jpg" alt="Photo of a Shiba Inu">
-      <mat-card-content>
-        <p><span style="font-weight: bold">Age:</span> {{sitter.age}}</p>
-        <p><span style="font-weight: bold">Gender:</span> {{sitter.gender}}</p>
-        <p><span style="font-weight: bold">Region:</span> {{sitter.region}}</p>
-        <p><span style="font-weight: bold">Phonenumber:</span> {{sitter.phone}}</p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>More Info</button>
-        <button mat-button (click)="editSitter(sitter)">Edit</button>
-        <button mat-button (click)="deleteSitter(sitter)">Delete</button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
-</div>
-
-<!-- <div id="card-container">
-      <div *ngFor="let baby of babies | filterBabies: search">
-        <app-user [babyInput]="baby" (babyClicked)="onBabyClicked($event)">
-        </app-user>
-      </div>
-    </div> -->

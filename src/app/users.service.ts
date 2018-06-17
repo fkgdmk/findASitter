@@ -18,7 +18,6 @@ export class UsersService  {
 
     createUser(user: User) {
         user.customerId = '123user'
-        user.babyorsitterid = ''
         return this.http.post("http://angular2api2.azurewebsites.net/api/internships", user)
     }
 

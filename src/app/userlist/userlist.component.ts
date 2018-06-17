@@ -40,10 +40,10 @@ export class UserlistComponent implements OnInit {
     this.getUsers(this.type);
     
     // Somehow wait for dispatch fetching data from web API to finish?
-    console.log(this.ngRedux.getState())
+    console.log("state ", this.ngRedux.getState())
     //this.babies = this.ngRedux.getState().babies;
     this.sitters = this.ngRedux.getState().sitters;
-
+    console.log("state ", this.ngRedux.getState())
     this.spinner = false;
   }
 

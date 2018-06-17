@@ -26,12 +26,19 @@
         <mat-form-field class="example-full-width">
           <input matInput placeholder="Postal Code" id="postalCode" formControlName="postalCode" required>
         </mat-form-field>
-        <mat-form-field class="example-full-width">
+        <!-- <mat-form-field class="example-full-width">
           <input matInput placeholder="Gender" id="gender" formControlName="gender" required>
-        </mat-form-field>
+        </mat-form-field> -->
+        <mat-form-field class="example-full-width">
+          <mat-select placeholder="Gender" [(ngModel)]="selectedValue" formControlName="gender" name="gender">
+            <mat-option *ngFor="let gender of genders" [value]="gender.value">
+              {{gender.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>   
       </div>
+      <br>
       <mat-spinner class="spinner" diameter="30" *ngIf="spinner == true"></mat-spinner>
-      <p class="created-succesfully" *ngIf="babyCreated == true">Baby was created</p>
       <button mat-raised-button color="primary" type="submit" id="createBaby">Register</button>
     </div>
   </form>
@@ -52,13 +59,14 @@
           <input matInput placeholder="Age" id="age" formControlName="age" required>
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Gender" id="gender" formControlName="gender" required>
-        </mat-form-field>
+          <mat-select placeholder="Gender" [(ngModel)]="selectedValue" formControlName="gender" name="gender">
+            <mat-option *ngFor="let gender of genders" [value]="gender.value">
+              {{gender.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>  
         <mat-form-field class="example-full-width">
           <input matInput placeholder="Region" id="region" formControlName="region" required>
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Picture" id="picture" formControlName="picture" required>
         </mat-form-field>
         <mat-form-field class="example-full-width">
           <input matInput placeholder="Years of experience" id="yearsOfExperience" formControlName="yearsOfExperience" required>
@@ -67,8 +75,8 @@
           <input matInput placeholder="Phone" id="phone" formControlName="phone" required>
         </mat-form-field>
       </div>
+      <br>
       <mat-spinner class="spinner" diameter="30" *ngIf="spinner == true"></mat-spinner>
-      <p class="created-succesfully" *ngIf="sitterCreated == true">Sitter was created</p>
       <button mat-raised-button color="primary" type="submit" id="createSitter">Register</button>
     </div>
   </form>

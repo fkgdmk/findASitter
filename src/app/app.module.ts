@@ -28,6 +28,8 @@ import {
   MatCardModule,
   MatIconModule,
 } from '@angular/material';
+import {MatSelectModule} from '@angular/material/select';
+
 
 // Activating the store with a state (imports)
 import { NgRedux, NgReduxModule } from "@angular-redux/store";
@@ -77,7 +79,8 @@ import { reducer } from './reducers';
       MatToolbarModule,
       MatRadioModule,
       MatCardModule,
-      MatIconModule
+      MatIconModule,
+      MatSelectModule
     ], 
   ],
   providers: [AuthGuard, AuthService, DataService, UsersService, HttpClientModule, UserlistComponent, DatabaseService],

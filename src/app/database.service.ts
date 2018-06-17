@@ -10,7 +10,7 @@ export class DatabaseService {
 
     fetchBabies() {
         this.http.get("http://angular2api1.azurewebsites.net/api/internships/getall").subscribe( (result : any[]) => {
-            let babies = result.filter(baby => baby.customerId === '4');
+            let babies = result.filter(baby => baby.customerId === '123baby');
             console.log("Got babies: ");
             console.log(babies);
             this.ngRedux.dispatch({type: ADD_BABIES, babies: babies})

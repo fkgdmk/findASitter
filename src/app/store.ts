@@ -44,6 +44,7 @@ export function rootReducer(state, action) {
         
         case EDIT_BABY:
             console.log("Called edit baby.")
+            console.log("state", state.babies);
             let updatedBabies = state.babies;
             let index = state.babies.findIndex((b) => b._id == action.baby._id);
             updatedBabies[index] = action.baby;

@@ -1,36 +1,39 @@
-<form [formGroup]="registerForm" novalidate 
-  (submit)="onSubmitRegister(registerForm)">
-  
+<form [formGroup]="registerForm" novalidate (submit)="onSubmitRegister(registerForm)">
+
   <div class="container">
     <div class="inputFieldsDiv">
-      <h3>Register</h3>
-      <hr><br>
-      <form class="example-form" [formGroup]="registerForm">
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Email" value="" formControlName="email">
-        </mat-form-field>
-          <div class="error" *ngIf="registerForm.controls.email.errors?.required && registerForm.controls.email.touched">
-            Please fill out the email
-          </div>
-      </form>
+      <h3>Login credentials</h3>
+      <hr>
       <br>
-      
-      <form class="example-form" [formGroup]="registerForm">
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Password" type="password" formControlName="password">
-        </mat-form-field>
-      </form>
-        <div class="error" *ngIf="registerForm.controls.password.errors?.required && registerForm.controls.password.touched">
-          Please fill out the password
-        </div>
-        <div class="checkboxDiv">
-          <mat-checkbox>Remember me</mat-checkbox>
-        </div>
-        <br>
-        <button type="submit" class="loginBtn" mat-raised-button color="primary">Register</button>   
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Email" value="" formControlName="email">
+      </mat-form-field>
+      <div class="error" *ngIf="registerForm.controls.email.errors?.required && registerForm.controls.email.touched">
+        Please fill out the email
+      </div>
+      <br>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Password" type="password" formControlName="password">
+      </mat-form-field>
+      <div class="error" *ngIf="registerForm.controls.password.errors?.required && registerForm.controls.password.touched">
+        Please fill out the password
+      </div>
+      <br>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Confirm Password" type="password" formControlName="confirm">
+      </mat-form-field>
+      <div class="error" *ngIf="confirmPass == false && registerForm.controls.confirm.touched">
+        Password doesn't match
+      </div>
+      <br>
+      <mat-spinner class="spinner" diameter="30" *ngIf="spinner == true"></mat-spinner>
+      <p class="created-succesfully" *ngIf="userCreated == true">Baby was created</p>
+      <button type="submit" class="loginBtn" mat-raised-button color="primary">Register</button>
     </div>
   </div>
   <!-- <p>Form value: {{ loginForm.value | json }}</p>
   <p>Is form valid: {{ loginForm.valid | json }}</p>  -->
-    <!-- [disabled]="loginForm.invalid" -->
+  <!-- [disabled]="loginForm.invalid" -->
 </form>

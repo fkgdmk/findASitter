@@ -8,6 +8,7 @@ export class User {
 
 export interface IUser {
   _id?: string;
+  id: string;
   customerId?: string;
   email: string;
   password: string;

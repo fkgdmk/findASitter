@@ -6,8 +6,8 @@
 
   <mat-radio-group [(ngModel)]='registrant'>
     <div class="radioBtns">
-      <mat-radio-button class="example-radio-button" value='sitter'>Babysitter</mat-radio-button>
-      <mat-radio-button class="example-radio-button" id="radio" value='baby'>Baby</mat-radio-button>
+      <mat-radio-button class="radio-button-sitter" id="radio-sitter" value='sitter'>Babysitter</mat-radio-button>
+      <mat-radio-button class="radio-button-baby" id="radio-baby" value='baby'>Baby</mat-radio-button>
     </div>
   </mat-radio-group>
 
@@ -30,7 +30,7 @@
           <input matInput placeholder="Gender" id="gender" formControlName="gender" required>
         </mat-form-field> -->
         <mat-form-field class="example-full-width">
-          <mat-select placeholder="Gender" [(ngModel)]="selectedValue" formControlName="gender" name="gender">
+          <mat-select placeholder="Gender" [(ngModel)]="selectedValue" formControlName="gender" name="gender" id='select-genders'>
             <mat-option *ngFor="let gender of genders" [value]="gender.value">
               {{gender.value}}
             </mat-option>

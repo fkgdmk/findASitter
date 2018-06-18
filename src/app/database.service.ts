@@ -15,7 +15,7 @@ export class DatabaseService {
             console.log(babies);
             this.ngRedux.dispatch({type: ADD_BABIES, babies: babies})
           });;
-      }
+    }
 
     fetchUsers() {
         this.http.get("http://angular2api1.azurewebsites.net/api/internships/getall").subscribe( (result : any[]) => {

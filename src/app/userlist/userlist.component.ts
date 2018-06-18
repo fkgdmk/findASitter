@@ -111,7 +111,6 @@ export class UserlistComponent implements OnInit {
     this.showCards = true;
     this.usersService.getUsers().subscribe((result: any[]) => {
       //this.babies = result.filter(baby => baby.customerId === '123baby');
-
       this.sitters = result.filter(sitter => sitter.customerId === '123sitter');
       this.spinner = false;
     });

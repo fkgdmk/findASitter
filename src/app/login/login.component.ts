@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
             this.authService.login().subscribe(() => {
               console.log("Now I am logged in!");
               this.usersService.loggedInUser = element;
-              this.ngRedux.dispatch({type: LOGIN, loggedInUser: element});
+              this.ngRedux.dispatch({type: LOGIN, user: element});
             })
           }
         }

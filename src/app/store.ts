@@ -26,7 +26,7 @@ export function rootReducer(state, action) {
         case LOGIN:
             console.log("Called login dispatch.")
             return Object.assign({}, state, {
-                loggedInUsers: action.user
+                loggedInUser: action.user
             });
 
             /* BABIES */

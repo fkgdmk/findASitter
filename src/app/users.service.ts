@@ -9,7 +9,9 @@ import { User } from "./entities/user";
 @Injectable()
 export class UsersService  {
     constructor (private http: HttpClient){}
+    isUserLoggedIn: boolean;
     loggedInUser: User;
+    subject;
     
     createBaby(baby: Baby) {
         baby.customerId = '123baby';
@@ -39,8 +41,10 @@ export class UsersService  {
         const httpOptions = {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         };
+        console.log("updating baby:", baby);
         const url = "http://angular2api2.azurewebsites.net/api/internships/" + id;
-        return this.http.put(url, baby)
+        //return this.http.put(url, baby, httpOptions)
+        return this.http.put(url, baby, httpOptions)
     }   
 
     updateBabyUser (baby: Baby) {

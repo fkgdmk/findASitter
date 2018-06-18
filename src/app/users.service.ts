@@ -84,6 +84,12 @@ export class UsersService  {
         return this.http.delete(url);
     }
 
+    deleteUser(user: User) {
+        const id : string = user._id;
+        const url = "http://angular2api2.azurewebsites.net/api/internships/" + id;
+        return this.http.delete(url);
+    }
+
     private handleError(error: HttpErrorResponse) {
         if (error.error instanceof ErrorEvent) {
           // A client-side or network error occurred. Handle it accordingly.

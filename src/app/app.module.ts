@@ -1,5 +1,6 @@
 import { UsersService } from './users.service';
 import { FilterBabies } from './babies.filter';
+import { FilterSitters } from './sitters.filter';
 import { DataService } from './data.service';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -60,7 +61,8 @@ import { ProfileComponent } from './profile/profile.component';
     LandingComponent,
     UserregisterComponent,
     UserComponent,
-    ProfileComponent
+    ProfileComponent,
+    FilterSitters
   ],
   imports: [
     HttpClientModule,

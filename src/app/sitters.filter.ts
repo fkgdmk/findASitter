@@ -1,10 +1,10 @@
- import {Injectable, Pipe, PipeTransform} from '@angular/core';
-import { Baby } from './entities/baby';
+import {Injectable, Pipe, PipeTransform} from '@angular/core';
+import { Sitter } from './entities/sitter';
 
-@Pipe({name: 'filterBabies'})
+@Pipe({name: 'filterSitters'})
 @Injectable()
-export class FilterBabies implements PipeTransform {
-     transform(items: Baby[], input: string): any {
+export class FilterSitters implements PipeTransform {
+     transform(items: Sitter[], input: string): any {
      
       if (input && items.length > 0) {
         let itemsFound = items.filter(
@@ -18,5 +18,3 @@ export class FilterBabies implements PipeTransform {
    return items;
  }
 }
-
-

@@ -44,14 +44,14 @@ export class LoginComponent implements OnInit {
               console.log("Now I am logged in!");
               this.usersService.loggedInUser = element;
               this.usersService.isUserLoggedIn = true;
-              this.router.navigate(['profile'])
               this.database.login(element, element.babyorsitterid);
+              // Hacky fix to wait for the redux subject to update
+              setTimeout(() => {
+                this.router.navigate(['profile'])}, 1500)
             })
           }
         }
       }
-
-      // this.router.navigate(['contact']); // Navigate
     } else {
       // Show errors and not send a request.
       alert("Fill out the fields, dummy! ")
@@ -79,7 +79,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.createForm();
-    //this.getUsers();
     this.fetchUsers();
   }
 

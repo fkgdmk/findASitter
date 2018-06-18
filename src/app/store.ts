@@ -10,14 +10,16 @@ export interface IAppState {
     babies: IBaby[];
     sitters: ISitter[];
     users: IUser[];
-    loggedInUser: IUser;    
+    loggedInUser: IUser;
+    subject;    
 }
 
 export const INITIAL_STATE: IAppState = {
     babies: [],
     sitters: [],
     users: [],
-    loggedInUser: null
+    loggedInUser: null,
+    subject: null
 }
 
 export function rootReducer(state, action) {
@@ -26,7 +28,8 @@ export function rootReducer(state, action) {
         case LOGIN:
             console.log("Called login dispatch.")
             return Object.assign({}, state, {
-                loggedInUser: action.user
+                loggedInUser: action.payload.user,
+                subject: action.payload.subject
             });
 
             /* BABIES */

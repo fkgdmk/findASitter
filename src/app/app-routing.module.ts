@@ -9,6 +9,7 @@ import { UserlistComponent } from './userlist/userlist.component';
 import { LandingComponent } from './landing/landing.component';
 import { UserregisterComponent } from './userregister/userregister.component';
 import { UserComponent } from './userlist/user/user.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -18,9 +19,10 @@ const routes: Routes = [
   ] },
   { path: 'login', component: LoginComponent },
   { path: 'userregister', component: UserregisterComponent },
-  { path: 'register', component: RegisterComponent},
+  { path: 'register', component: RegisterComponent },
   { path: 'userlist', component: UserlistComponent },
-  { path: 'user', component: UserComponent},
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'user', component: UserComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
 

@@ -8,6 +8,7 @@ import { NgRedux, select } from '@angular-redux/store';
 import { IAppState, INITIAL_STATE } from '../store';
 import { FETCH_DATA, LOGIN } from '../actions';
 import { HttpClient } from '@angular/common/http';
+import { DatabaseService } from '../database.service';
 
 @Component({
   selector: 'app-login',
@@ -23,6 +24,7 @@ export class LoginComponent implements OnInit {
   // DI - Dependency Injection
   constructor(private fb: FormBuilder, private router: Router,
     private authService: AuthService, private usersService: UsersService,
+    private database: DatabaseService,
     private ngRedux: NgRedux<IAppState>, private http: HttpClient) {
   }
 
@@ -41,7 +43,8 @@ export class LoginComponent implements OnInit {
             this.authService.login().subscribe(() => {
               console.log("Now I am logged in!");
               this.usersService.loggedInUser = element;
-              this.ngRedux.dispatch({type: LOGIN, user: element});
+              this.usersService.isUserLoggedIn = true;
+              this.database.login(element, element.babyorsitterid);
             })
           }
         }

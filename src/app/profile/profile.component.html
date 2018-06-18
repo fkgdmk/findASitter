@@ -1,0 +1,86 @@
+<div *ngFor="let subject of subjects | async">
+  <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar class="avatar-image"></div>
+      <mat-card-title>{{subject.firstname}}</mat-card-title>
+      <mat-card-subtitle>{{subject.age}} months</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="https://www.femina.dk/sites/femina.dk/files/media/article/tigerspring_baby.jpg" alt="Photo of a Shiba Inu" *ngIf="type == 'baby'">
+    <img mat-card-image src="https://dealnews.a.ssl.fastly.net/files/uploads/babysitter-kids.jpg" alt="Photo of a Shiba Inu" *ngIf="type == 'sitter'">
+    <mat-card-content>
+      <p><span style="font-weight: bold">Age:</span> {{subject.age}}</p>      
+        <p><span style="font-weight: bold">Gender:</span> {{subject.gender}}</p>
+        <p><span style="font-weight: bold">Postalcode:</span> {{subject.postalCode}}</p>      
+        <p><span style="font-weight: bold">Region:</span> Copenhagen</p>      
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>More Info</button>
+      <button mat-button (click)="showEdit()">Edit</button>
+      <button mat-button (click)="delete()">Delete</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+<div *ngIf="edit == true">
+    <div class="inputFieldsDiv" *ngIf="type == 'baby'">
+        <form novalidate [formGroup]="editBabyForm" (submit)="onSubmit(editBabyForm)">
+          <h3>Edit Baby</h3>
+          <hr>
+          <br>
+          <div class="example-form">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Firstname" id="firstname" formControlName="firstname" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Age" id="age" formControlName="age" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Postal Code" id="postalCode" formControlName="postalCode" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Gender" id="gender" formControlName="gender" required>
+            </mat-form-field>
+          </div>
+          <mat-spinner class="spinner" diameter="30" *ngIf="spinner == true"></mat-spinner>
+          <p class="created-succesfully" *ngIf="userCreated == true">Baby was created</p>
+          <button mat-raised-button color="primary" type="submit" id="createBaby">Confirm</button>
+        </form>
+      </div>
+    
+      <div class="inputFieldsDiv" *ngIf="type == 'sitter'">
+        <form novalidate [formGroup]="editSitterForm" (submit)="onSubmit(editSitterForm)">
+          <h3>Edit Babysitter</h3>
+          <hr>
+          <br>
+          <div class="example-form">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Firstname" id="firstname" formControlName="firstname" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Lastname" id="lastname" formControlName="lastname" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Age" id="age" formControlName="age" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Gender" id="gender" formControlName="gender" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Region" id="region" formControlName="region" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Picture" id="picture" formControlName="picture" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Years of experience" id="yearsOfExperience" formControlName="yearsOfExperience" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Phone" id="phone" formControlName="phone" required>
+            </mat-form-field>
+          </div>
+          <mat-spinner class="spinner" diameter="30" *ngIf="spinner == true"></mat-spinner>
+          <p class="created-succesfully" *ngIf="sitterCreated == true">Sitter was created</p>
+          <button mat-raised-button color="primary" type="submit" id="createSitter">Confirm</button>
+        </form>
+      </div>
+</div>

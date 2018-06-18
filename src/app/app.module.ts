@@ -46,6 +46,7 @@ import { IUser } from './entities/user';
 import { ADD_BABY, ADD_BABIES } from './actions';
 import { DatabaseService } from './database.service';
 import { reducer } from './reducers';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { reducer } from './reducers';
     FilterBabies,
     LandingComponent,
     UserregisterComponent,
-    UserComponent
+    UserComponent,
+    ProfileComponent
   ],
   imports: [
     HttpClientModule,

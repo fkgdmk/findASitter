@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { IAppState } from "./store";
-import { ADD_BABIES, REMOVE_BABY, ADD_BABY, ADD_USERS } from "./actions";
+import { ADD_BABIES, REMOVE_BABY, ADD_BABY, ADD_USERS, LOGIN } from "./actions";
 import { NgRedux } from "@angular-redux/store";
 
 @Injectable()
@@ -20,10 +20,20 @@ export class DatabaseService {
     fetchUsers() {
         this.http.get("http://angular2api1.azurewebsites.net/api/internships/getall").subscribe( (result : any[]) => {
             let users = result.filter(user => user.customerId === '123user');
-            console.log("Got users: ");
-            console.log(users);
+            console.log("Got users: ", users);
             this.ngRedux.dispatch({type: ADD_USERS, users: users})
-          });;
+          });
+    }
+
+    login(user, ownerId) {
+        this.http.get("http://angular2api1.azurewebsites.net/api/internships/getall").subscribe( (result : any[]) => {
+            let subject = result.filter((subject) => (subject._id === ownerId));
+            console.log("subject: ", subject);
+            this.ngRedux.dispatch({type: LOGIN, payload: {
+                user: user,
+                subject: subject
+            }})
+        });
     }
 
     testDispatches() {
@@ -49,4 +59,3 @@ export class DatabaseService {
         }})
     }
 }
-

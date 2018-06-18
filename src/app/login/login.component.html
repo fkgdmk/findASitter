@@ -17,7 +17,7 @@
       
       <form class="example-form" [formGroup]="loginForm">
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Password" id="password" type="text" formControlName="password">
+          <input matInput placeholder="Password" id="password" type="password" formControlName="password">
         </mat-form-field>
       </form>
         <div class="error" *ngIf="loginForm.controls.password.errors?.required && loginForm.controls.password.touched">

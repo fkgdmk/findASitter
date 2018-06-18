@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit {
               console.log("Now I am logged in!");
               this.usersService.loggedInUser = element;
               this.usersService.isUserLoggedIn = true;
+              this.router.navigate(['profile'])
               this.database.login(element, element.babyorsitterid);
             })
           }

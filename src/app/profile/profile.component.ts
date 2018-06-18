@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
   constructor(private fb: FormBuilder, private usersService : UsersService, 
     private userlist: UserlistComponent, private data: DataService,
     private database: DatabaseService, private router: Router, private ngRedux: NgRedux<IAppState>) {
-      
+
       this.editBabyForm = fb.group({
         firstname: [''],
           picture: [''],
@@ -89,7 +89,7 @@ export class ProfileComponent implements OnInit {
   }
 
   showEdit() {
-    this.edit = true;
+    this.edit = !this.edit;
   }
 
   onSubmit() {
@@ -113,7 +113,7 @@ export class ProfileComponent implements OnInit {
       this.sitter.phone = this.editSitterForm.value.phone;
 
       this.usersService.updateSitter(this.sitter, this.sitter._id).subscribe(x => {
-        console.log("upd");
+
       });
     }
   }

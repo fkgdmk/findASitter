@@ -86,7 +86,9 @@ export function rootReducer(state, action) {
             });
     
         case REMOVE_USER:
-        return state;
+            return Object.assign({}, state, {
+                users: state.users.filter((user) => user._id !== action.id)
+            })
 
             /* END */
         default:

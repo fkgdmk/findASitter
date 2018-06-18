@@ -2,17 +2,22 @@ import { UsersService } from '.././users.service';
 import { Component, OnInit, Injectable, Input, Output, EventEmitter } from '@angular/core';
 import { DataService } from '../data.service';
 import { Baby, IBaby } from '../entities/baby';
+import { User, IUser } from '../entities/user';
 import { Sitter, ISitter } from '../entities/sitter';
 import { Router } from '@angular/router';
 import { INITIAL_STATE, IAppState } from '../store';
 import { NgRedux, select } from '@angular-redux/store';
-import { REMOVE_BABY } from '../actions';
+import { REMOVE_BABY, REMOVE_USER } from '../actions';
+import { FilterBabies } from '../babies.filter';
+import { FilterSitters } from '../sitters.filter';
 
 @Component({
-  selector: 'app-userlist',
+  selector: 'app-userlist', 
   templateUrl: './userlist.component.html',
-  styleUrls: ['./userlist.component.scss']
+  styleUrls: ['./userlist.component.scss'],
 })
+
+
 
 @Injectable()
 export class UserlistComponent implements OnInit {
@@ -28,23 +33,19 @@ export class UserlistComponent implements OnInit {
   baby: Baby;
 
 
-  constructor(private data: DataService, private usersService: UsersService, private router : Router, 
-    private ngRedux: NgRedux<IAppState>) { }
+  constructor(private data: DataService, private usersService: UsersService, private router : Router, private ngRedux: NgRedux<IAppState>) { }
 
   ngOnInit() {
     this.type = 'baby';
     this.data.currentBaby.subscribe(baby => {
       this.baby = baby;
-      console.log(baby);
     });
     this.getUsers(this.type);
     
     // Somehow wait for dispatch fetching data from web API to finish?
-    console.log("state ", this.ngRedux.getState())
     //this.babies = this.ngRedux.getState().babies;
     this.sitters = this.ngRedux.getState().sitters;
-    console.log("state ", this.ngRedux.getState())
-    this.spinner = false;
+  
   }
 
   onBabyClicked(baby) {
@@ -52,6 +53,7 @@ export class UserlistComponent implements OnInit {
   }
 
   deleteBaby(baby: Baby) {    
+    let user : IUser 
     //Redux
     this.usersService.deleteBaby(baby).subscribe( () => {
       this.babies = this.babies.filter((b) => {
@@ -62,7 +64,20 @@ export class UserlistComponent implements OnInit {
         }
       })
     })
-    this.ngRedux.dispatch({type: REMOVE_BABY, id: baby._id})
+
+    try {
+      user = this.ngRedux.getState().users.find(user => user.babyorsitterid === baby._id);
+    } catch (error) {
+      console.log(error);
+    }
+    console.log("user", user);
+    if (user) {
+      console.log("test");
+      this.usersService.deleteUser(user).subscribe();
+      this.ngRedux.dispatch({type: REMOVE_USER, id: user._id});
+    }
+
+    this.ngRedux.dispatch({type: REMOVE_BABY, id: baby._id});
     
     /*
     //Old
@@ -94,7 +109,6 @@ export class UserlistComponent implements OnInit {
 
   getUsers(type: string) {
     this.showCards = true;
-    this.spinner = true;
     this.usersService.getUsers().subscribe((result: any[]) => {
       //this.babies = result.filter(baby => baby.customerId === '123baby');
 

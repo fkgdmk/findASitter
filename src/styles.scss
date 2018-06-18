@@ -11,7 +11,8 @@ $box-shadow: 0 18px 35px rgba(50,50,93,.1);
 
 body {
     content: "";
-    background: url('media/andre-hunter-107089-unsplash.jpg') no-repeat;
+    background: url('media/andre-hunter-107089-unsplash.jpg') repeat;
+    background-color:#95a5a6;
     background-size: cover;
     position: absolute;
     top: 0;

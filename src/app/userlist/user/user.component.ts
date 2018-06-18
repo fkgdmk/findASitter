@@ -112,7 +112,6 @@ export class UserComponent implements OnInit {
       this.sitter.phone = this.editSitterForm.value.phone;
 
       this.usersService.updateSitter(this.sitter, this.sitter._id).subscribe(x => {
-        console.log("upd");
       });
       this.router.navigate(['userlist']);      
     }

@@ -1,4 +1,4 @@
-import { ADD_BABY, REMOVE_BABY, ADD_SITTER, REMOVE_SITTER, ADD_BABIES, ADD_USER } from "./actions";
+import { ADD_BABY, REMOVE_BABY, ADD_SITTER, REMOVE_SITTER, ADD_BABIES, ADD_USER, REMOVE_USER } from "./actions";
 import { combineReducers } from "redux";
 
 /*
@@ -46,9 +46,13 @@ function sitterReducer(state = [], action) {
 function userReducer(state = [], action) {
     switch (action.type) {
         case ADD_USER: 
-        action.id = state.length + 1;
-        return [...state, action.user]
-    }
+            action.id = state.length + 1;
+            return [...state, action.user]
+        case REMOVE_USER:
+            return Object.assign({}, state, state.filter((user) => user.id !== action.id))
+        default: 
+            return state;
+    }   
 }
 
 export const reducer = combineReducers({babies: babyReducer, sitters: sitterReducer})

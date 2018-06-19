@@ -35,22 +35,24 @@ export class LoginComponent implements OnInit {
 
       // Update users because this component was loaded before the users were updated     
       let userList = this.ngRedux.getState().users;
-
+      let match: boolean = false;
       for (let i = 0; i < userList.length; i++) {
         let element: User = userList[i];
         if (element.email == loginForm.value.username) {
           if (element.password === loginForm.value.password) {
-            this.authService.login().subscribe(() => {
+            match = true;
+            this.authService.login(element).subscribe(() => {
               console.log("Now I am logged in!");
-              this.usersService.loggedInUser = element;
-              this.usersService.isUserLoggedIn = true;
-              this.database.login(element, element.babyorsitterid);
+
               // Hacky fix to wait for the redux subject to update
               setTimeout(() => {
                 this.router.navigate(['profile'])}, 1500)
             })
           }
         }
+      }
+      if (!match) {
+        alert("Login is incorrect")
       }
     } else {
       // Show errors and not send a request.

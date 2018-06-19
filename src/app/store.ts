@@ -4,7 +4,6 @@ import { IUser } from "./entities/user";
 import { ADD_BABY, REMOVE_BABY, ADD_SITTER, REMOVE_SITTER, LOGIN, FETCH_DATA, ADD_BABIES, ADD_SITTERS, ADD_USER, ADD_USERS, REMOVE_USER, EDIT_BABY } from "./actions";
 import { HttpClient } from "@angular/common/http";
 import { combineReducers, createStore, Store } from "redux";
-import { reducer } from "./reducers";
 
 export interface IAppState {
     babies: IBaby[];
@@ -98,5 +97,3 @@ export function rootReducer(state, action) {
             return state;
     }
 }
-
-//unsubscribe();

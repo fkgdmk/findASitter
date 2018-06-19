@@ -17,8 +17,6 @@ import { FilterSitters } from '../sitters.filter';
   styleUrls: ['./userlist.component.scss'],
 })
 
-
-
 @Injectable()
 export class UserlistComponent implements OnInit {
 
@@ -45,7 +43,6 @@ export class UserlistComponent implements OnInit {
     // Somehow wait for dispatch fetching data from web API to finish?
     //this.babies = this.ngRedux.getState().babies;
     this.sitters = this.ngRedux.getState().sitters;
-  
   }
 
   onBabyClicked(baby) {
@@ -78,13 +75,6 @@ export class UserlistComponent implements OnInit {
     }
 
     this.ngRedux.dispatch({type: REMOVE_BABY, id: baby._id});
-    
-    /*
-    //Old
-    this.usersService.deleteBaby(baby).subscribe( x => {
-      this.babies = this.babies.filter((b) => b._id !== baby._id)
-      location.reload();
-    });*/
   }
 
   deleteSitter(sitter: Sitter) {
@@ -97,7 +87,6 @@ export class UserlistComponent implements OnInit {
   editBaby(baby: Baby) {
     this.data.changeCurrentBaby(baby);
     this.data.changeCurrentUser("baby")
-    //this.currentBaby = baby;
     this.router.navigate(['user']);
   }
 
@@ -110,7 +99,6 @@ export class UserlistComponent implements OnInit {
   getUsers(type: string) {
     this.showCards = true;
     this.usersService.getUsers().subscribe((result: any[]) => {
-      //this.babies = result.filter(baby => baby.customerId === '123baby');
       this.sitters = result.filter(sitter => sitter.customerId === '123sitter');
       this.spinner = false;
     });

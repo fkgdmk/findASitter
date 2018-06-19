@@ -13,23 +13,16 @@ export class DataService {
   baby : IBaby;
   sitter : ISitter;
   user : string;
+
   private babySource = new BehaviorSubject<IBaby>(this.baby);
   private sitterSource = new BehaviorSubject<ISitter>(this.sitter);
   private currentUserSource = new BehaviorSubject<string>(this.user);
+
   currentBaby = this.babySource.asObservable();
   currentSitter = this.sitterSource.asObservable();
   currentUser = this.currentUserSource.asObservable();
 
   constructor(private http: HttpClient, private ngRedux: NgRedux<IAppState>) { }
-
-  getBabies() {
-    this.http.get("http://angular2api1.azurewebsites.net/api/internships/getall").subscribe( (result : any[]) => {
-        let babies = result.filter(baby => baby.customerId === '4');
-        console.log("Got babies: ");
-        console.log(babies);
-        this.ngRedux.dispatch({type: ADD_BABIES, babies: babies})
-      });;
-  }
 
   changeCurrentBaby (baby : IBaby) {
     this.babySource.next(baby);
@@ -42,5 +35,4 @@ export class DataService {
   changeCurrentUser (user : string) {
     this.currentUserSource.next(user);
   }
-
 }

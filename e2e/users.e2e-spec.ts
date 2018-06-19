@@ -26,7 +26,7 @@ describe('Babies test', () => {
             element(by.id('select-genders')).click();
             element(by.cssContainingText('mat-option', 'Male')).click();
             element(by.id('createBaby')).click();
-            browser.sleep(2000);
+            browser.sleep(5000);
             element(by.id('userlist')).click();
             browser.sleep(5000);
             element.all(by.css('.baby-card')).then(function(babiesafter) 

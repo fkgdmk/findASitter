@@ -17,6 +17,7 @@ import { DatabaseService } from '../database.service';
 })
 export class LoginComponent implements OnInit {
   private loginForm: FormGroup;
+  private spinner: boolean;
 
   //Redux
   @select('users') users;
@@ -29,6 +30,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmitLogin(loginForm) {
+    this.spinner = true;
     // Try to login
     if (loginForm.valid) {
       console.log("Valid form");
@@ -43,10 +45,11 @@ export class LoginComponent implements OnInit {
             match = true;
             this.authService.login(element).subscribe(() => {
               console.log("Now I am logged in!");
-
+              
               // Hacky fix to wait for the redux subject to update
               setTimeout(() => {
-                this.router.navigate(['profile'])}, 1500)
+                this.spinner = false;
+                this.router.navigate(['profile'])}, 1500);
             })
           }
         }
@@ -80,6 +83,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.spinner = false;
     this.createForm();
     this.fetchUsers();
   }

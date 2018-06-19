@@ -1,36 +1,37 @@
-<form [formGroup]="loginForm" novalidate 
-  (submit)="onSubmitLogin(loginForm)">
-  
+<form [formGroup]="loginForm" novalidate (submit)="onSubmitLogin(loginForm)">
+
   <div class="container">
     <div class="inputFieldsDiv">
       <h3>Login</h3>
-      <hr><br>
+      <hr>
+      <br>
       <form class="example-form" [formGroup]="loginForm">
         <mat-form-field class="example-full-width">
           <input matInput placeholder="Username" id="username" value="" formControlName="username">
         </mat-form-field>
-          <div class="error" *ngIf="loginForm.controls.username.errors?.required && loginForm.controls.username.touched">
-            Please fill out the username
-          </div>
+        <div class="error" *ngIf="loginForm.controls.username.errors?.required && loginForm.controls.username.touched">
+          Please fill out the username
+        </div>
       </form>
       <br>
-      
+
       <form class="example-form" [formGroup]="loginForm">
         <mat-form-field class="example-full-width">
           <input matInput placeholder="Password" id="password" type="password" formControlName="password">
         </mat-form-field>
       </form>
-        <div class="error" *ngIf="loginForm.controls.password.errors?.required && loginForm.controls.password.touched">
-          Please fill out the password
-        </div>
-        <div class="checkboxDiv">
-          <mat-checkbox>Remember me</mat-checkbox>
-        </div>
-        <br>
-        <button type="submit" class="loginBtn" mat-raised-button color="primary">Login</button>   
+      <div class="error" *ngIf="loginForm.controls.password.errors?.required && loginForm.controls.password.touched">
+        Please fill out the password
+      </div>
+      <div class="checkboxDiv">
+        <mat-checkbox>Remember me</mat-checkbox>
+      </div>
+      <br>
+      <mat-spinner class="spinner" diameter="30" *ngIf="spinner == true"></mat-spinner>
+      <button type="submit" class="loginBtn" mat-raised-button color="primary">Login</button>
     </div>
   </div>
   <!-- <p>Form value: {{ loginForm.value | json }}</p>
   <p>Is form valid: {{ loginForm.valid | json }}</p>  -->
-    <!-- [disabled]="loginForm.invalid" -->
+  <!-- [disabled]="loginForm.invalid" -->
 </form>

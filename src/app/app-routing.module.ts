@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
   { path: 'landing', component: LandingComponent,
   children: [
-    { path: 'contact', component: ContactComponent},
+    { path: 'login', component: LoginComponent},
   ] },
   { path: 'login', component: LoginComponent },
   { path: 'userregister', component: UserregisterComponent },

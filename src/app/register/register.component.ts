@@ -67,43 +67,17 @@ export class RegisterComponent implements OnInit {
       let baby: Baby = this.registerBabyForm.value;
 
       // Redux
-      this.usersService.createBaby(baby).subscribe(() => {
-        // Update UI
-        
+      this.usersService.createBaby(baby).subscribe(() => {       
         // Add the baby you just saved to the redux state (this is necessary due to auto-generated ID)
         this.usersService.getUsers().subscribe( (result : any[]) => {
           let foundBabies = result.filter(b => b.firstname === baby.firstname);
-          
           this.ngRedux.dispatch({type: ADD_BABY, baby: foundBabies[foundBabies.length-1]});
+          //Update UI
           this.spinner = false;        
           this.clearForm();
           this.router.navigate(['userregister']);
         });
       })
-
-      // Old
-      /*
-      this.usersService.createBaby(baby).subscribe( () => {
-        this.userCreated = true;
-        let foundBabies: Baby[];
-      
-        this.usersService.createBaby(baby).subscribe( x=> {
-          this.babyCreated = true;
-          mergeTest
-          this.spinner = false;
-
-          console.log(this.usersService.loggedInUser.email);           
-          this.clearForm();
-
-          this.usersService.updateUser(this.usersService.loggedInUser, "123baby");
-
-          this.usersService.getUsers().subscribe( (result : any[]) => {
-            foundBabies = result.filter(aBaby => aBaby.firstname === baby.firstname); 
-            console.log(foundBabies);
-            this.usersService.updateBabyUser(foundBabies[0]);
-        });
-      });
-      */
     } else if (this.registerSitterForm.valid && this.registrant === 'sitter') {
       this.spinner = true;
       let sitter : Sitter = this.registerSitterForm.value;
@@ -116,7 +90,6 @@ export class RegisterComponent implements OnInit {
     } else {
       alert("Fill out all fields");
     }
-    //this.router.navigate(['userlist']);
   }
 
   clearForm() {

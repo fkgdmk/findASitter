@@ -46,7 +46,6 @@ import { ISitter } from './entities/sitter';
 import { IUser } from './entities/user';
 import { ADD_BABY, ADD_BABIES } from './actions';
 import { DatabaseService } from './database.service';
-import { reducer } from './reducers';
 import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
@@ -96,11 +95,11 @@ export class AppModule {
   constructor(ngRedux: NgRedux<IAppState>, http: HttpClient, database: DatabaseService) {
     ngRedux.configureStore(rootReducer, INITIAL_STATE);
     ngRedux.subscribe(() => {
-      console.log("> State changed <");
+      //console.log("> State changed <");
     })
 
     database.fetchBabies();
     database.fetchUsers();
-    database.testDispatches();
+    //database.testDispatches();
   }
  }

@@ -1,4 +1,4 @@
-import {Injectable, Pipe, PipeTransform} from '@angular/core';
+import { Injectable, Pipe, PipeTransform } from '@angular/core';
 import { Sitter } from './entities/sitter';
 
 @Pipe({name: 'filterSitters'})

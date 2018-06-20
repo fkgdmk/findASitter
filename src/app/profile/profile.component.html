@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="edit == false">
   <div *ngFor="let subject of subjects | async">
     <mat-card>
       <mat-card-header>

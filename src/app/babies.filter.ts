@@ -8,7 +8,7 @@ export class FilterBabies implements PipeTransform {
      
       if (input && items.length > 0) {
         let itemsFound = items.filter(
-          item => item.firstname && item.firstname.toLocaleLowerCase().includes(input.toLowerCase())
+          item => item.firstname && item.firstname.toLowerCase().includes(input.toLowerCase())
         );
        if (itemsFound && itemsFound.length > 0 ){
          return itemsFound;

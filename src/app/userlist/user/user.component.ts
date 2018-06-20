@@ -97,7 +97,7 @@ export class UserComponent implements OnInit {
       this.baby.postalCode = this.editBabyForm.value.postalCode;
       this.baby.gender = this.editBabyForm.value.gender;
    
-      this.usersService.updateBaby(this.baby, this.baby._id)
+      this.usersService.updateBaby(this.baby, this.baby._id).subscribe();
       this.ngRedux.dispatch({type: EDIT_BABY, baby: this.baby})
       this.router.navigate(['userlist']);
     } 

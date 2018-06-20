@@ -37,6 +37,7 @@ export class RegisterComponent implements OnInit {
     private ngRedux: NgRedux<IAppState>) { }
 
   ngOnInit() {
+
     this.babyCreated = false;
     this.sitterCreated = false;
     this.spinner = false; 

@@ -45,7 +45,7 @@ describe('Babies test', () => {
         element.all(by.css('.baby-card')).then(function (babiesbefore) 
         {
             const babiesBefore = babiesbefore.length;
-            
+
             element(by.cssContainingText('mat-card', 'firstname - test')).element(by.id('deleteBtn')).click();
               
             browser.sleep(3000);

@@ -41,7 +41,7 @@ export class UserregisterComponent implements OnInit {
         this.usersService.getUsers().subscribe( (result : any []) => {
           let foundUsers = result.filter( u => u.email === user.email);
 
-          this.ngRedux.dispatch({type: ADD_USER, user: foundUsers[foundUsers.length-1]})
+          this.ngRedux.dispatch({type: ADD_USER, payload: foundUsers[foundUsers.length-1]})
           this.spinner = false;
           this.router.navigate(["userlist"]);
         });

@@ -11,7 +11,6 @@ export class AppPage {
     return browser.get('/userlist');
   }
 
-
   // getBabies () {
   //   element.all(by.css('.babies li')).then(function(babies) {
   //     this.numb1 = babies.length;
@@ -33,9 +32,7 @@ export class AppPage {
       browser.sleep(1000);
     });
     return babiesBefore;
-  }
-
-  
+  } 
 
   checkIfBabyWasCreatedSuccessfully (babiesBefore) {
     element.all(by.css('.babies li')).then(function(babies) {
@@ -49,7 +46,6 @@ export class AppPage {
     element.all(by.css('.babies li')).then(function(babies) {
 
     });
-
   }
 
   checkIfBabyWasDeletedSuccessfully () {

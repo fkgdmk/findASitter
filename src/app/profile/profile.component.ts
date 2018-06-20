@@ -55,6 +55,7 @@ export class ProfileComponent implements OnInit {
   @Input() babyInput: IBaby;  
 
   ngOnInit() {
+    this.edit = false;
     console.log("Redux subject: ", this.ngRedux.getState().subject);
 
     let customerId = this.ngRedux.getState().subject[0].customerId;
@@ -93,13 +94,14 @@ export class ProfileComponent implements OnInit {
   }
 
   onSubmit() {
+    
     if (this.editBabyForm.valid && this.type == 'baby') {
       this.baby.firstname = this.editBabyForm.value.firstname;
       this.baby.age = this.editBabyForm.value.age;
       this.baby.postalCode = this.editBabyForm.value.postalCode;
       this.baby.gender = this.editBabyForm.value.gender;
    
-      this.usersService.updateBaby(this.baby, this.baby._id)
+      this.usersService.updateBaby(this.baby, this.baby._id).subscribe();
       this.ngRedux.dispatch({type: EDIT_BABY, baby: this.baby})
     } 
     else if (this.editSitterForm.valid && this.type == 'sitter') {
@@ -116,5 +118,6 @@ export class ProfileComponent implements OnInit {
 
       });
     }
+    this.edit = false;
   }
 }

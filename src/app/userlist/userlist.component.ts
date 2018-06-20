@@ -38,11 +38,11 @@ export class UserlistComponent implements OnInit {
     this.data.currentBaby.subscribe(baby => {
       this.baby = baby;
     });
-    this.getUsers(this.type);
-    
+    this.getUsers();
     // Somehow wait for dispatch fetching data from web API to finish?
     //this.babies = this.ngRedux.getState().babies;
-    this.sitters = this.ngRedux.getState().sitters;
+    //this.sitters = this.ngRedux.getState().sitters;
+
   }
 
   onBabyClicked(baby) {
@@ -69,7 +69,6 @@ export class UserlistComponent implements OnInit {
     }
     console.log("user", user);
     if (user) {
-      console.log("test");
       this.usersService.deleteUser(user).subscribe();
       this.ngRedux.dispatch({type: REMOVE_USER, id: user._id});
     }
@@ -96,7 +95,7 @@ export class UserlistComponent implements OnInit {
     this.router.navigate(['user']);
   }
 
-  getUsers(type: string) {
+  getUsers() {
     this.showCards = true;
     this.usersService.getUsers().subscribe((result: any[]) => {
       this.sitters = result.filter(sitter => sitter.customerId === '123sitter');

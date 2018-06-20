@@ -86,7 +86,7 @@ import { ProfileComponent } from './profile/profile.component';
       MatSelectModule
     ], 
   ],
-  providers: [AuthGuard, AuthService, DataService, UsersService, HttpClientModule, UserlistComponent, DatabaseService],
+  providers: [AuthGuard, AuthService, DataService, UsersService, HttpClientModule, DatabaseService, UserlistComponent],
   bootstrap: [AppComponent]
 })
 

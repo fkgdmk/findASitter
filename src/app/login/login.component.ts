@@ -30,22 +30,23 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmitLogin(loginForm) {
-    this.spinner = true;
     // Try to login
     if (loginForm.valid) {
+      this.spinner = true;
       console.log("Valid form");
 
       // Update users because this component was loaded before the users were updated     
       let userList = this.ngRedux.getState().users;
       let match: boolean = false;
+
       for (let i = 0; i < userList.length; i++) {
-        let element: User = userList[i];
-        if (element.email == loginForm.value.username) {
-          if (element.password === loginForm.value.password) {
+        let user: User = userList[i];
+        if (user.email == loginForm.value.username) {
+          if (user.password === loginForm.value.password) {
             match = true;
-            this.authService.login(element).subscribe(() => {
+            this.authService.login(user).subscribe(() => {
               console.log("Now I am logged in!");
-              
+
               // Hacky fix to wait for the redux subject to update
               setTimeout(() => {
                 this.spinner = false;
@@ -70,13 +71,13 @@ export class LoginComponent implements OnInit {
     });
   }  
 
-  getUsers () {
-    this.usersService.getUsers().subscribe( (result : any[]) => {
-      this.users = result.filter(user => user.customerId === '123user'); 
-      console.log(this.users);
-      console.log("Hello!")
-    });
-  }
+  // getUsers () {
+  //   this.usersService.getUsers().subscribe( (result : any[]) => {
+  //     this.users = result.filter(user => user.customerId === '123user'); 
+  //     console.log(this.users);
+  //     console.log("Hello!")
+  //   });
+  // }
 
   fetchUsers() {
     this.ngRedux.dispatch({type: FETCH_DATA, http: this.http})

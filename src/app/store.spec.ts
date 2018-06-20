@@ -21,7 +21,7 @@ it('should add a new baby object to array of babies', () => {
     let newBaby = { id: '501', firstname: 'Roland', postalCode: '2400', picture: 'no picture yet', age: 8, gender: 'MALE' };
  
     let expectedState = {
-        babies: [newBaby],
+        babies: [],
         sitters: [],
         users: [],
         loggedInUser: null,

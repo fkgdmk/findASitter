@@ -12,7 +12,7 @@ import { UserComponent } from './userlist/user/user.component';
 import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full'},
+  { path: '', redirectTo: 'landing/login', pathMatch: 'full'},
   { path: 'landing', component: LandingComponent,
   children: [
     { path: 'login', component: LoginComponent},

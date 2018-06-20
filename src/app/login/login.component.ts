@@ -32,21 +32,21 @@ export class LoginComponent implements OnInit {
   onSubmitLogin(loginForm) {
     // Try to login
     if (loginForm.valid) {
-      this.spinner = true;
       console.log("Valid form");
-
+      
       // Update users because this component was loaded before the users were updated     
       let userList = this.ngRedux.getState().users;
       let match: boolean = false;
-
+      
       for (let i = 0; i < userList.length; i++) {
         let user: User = userList[i];
         if (user.email == loginForm.value.username) {
           if (user.password === loginForm.value.password) {
             match = true;
             this.authService.login(user).subscribe(() => {
+              this.spinner = true;
               console.log("Now I am logged in!");
-
+              
               // Hacky fix to wait for the redux subject to update
               setTimeout(() => {
                 this.spinner = false;
